@@ -1,0 +1,74 @@
+[
+  {
+    "id": "buff_atk_up",
+    "name": "攻击强化",
+    "icon": "⚔",
+    "durationRounds": 3,
+    "maxStacks": 1,
+    "statMod": { "atkPct": 0.2 }
+  },
+  {
+    "id": "buff_shield",
+    "name": "护盾",
+    "icon": "🛡",
+    "durationRounds": 2,
+    "maxStacks": 1,
+    "statMod": { "dmgReduce": 0.2 }
+  },
+  {
+    "id": "buff_poison",
+    "name": "中毒",
+    "icon": "☠",
+    "durationRounds": 2,
+    "maxStacks": 3,
+    "dot": { "hpPct": 0.05, "tick": "turn" }
+  },
+  {
+    "id": "buff_slow",
+    "name": "减速",
+    "icon": "❄",
+    "durationRounds": 2,
+    "maxStacks": 1,
+    "statMod": { "spdFlat": -20 }
+  },
+  {
+    "id": "buff_berserk",
+    "name": "狂暴",
+    "icon": "🔥",
+    "durationRounds": 3,
+    "maxStacks": 1,
+    "statMod": { "atkPct": 0.35 }
+  },
+  {
+    "id": "buff_weaken",
+    "name": "虚弱",
+    "icon": "💔",
+    "durationRounds": 2,
+    "maxStacks": 2,
+    "statMod": { "atkPct": -0.15 }
+  },
+  {
+    "id": "buff_ironwall",
+    "name": "铁壁",
+    "icon": "🏰",
+    "durationRounds": 2,
+    "maxStacks": 1,
+    "statMod": { "defPct": 0.3 }
+  },
+  {
+    "id": "buff_haste",
+    "name": "加速",
+    "icon": "⚡",
+    "durationRounds": 3,
+    "maxStacks": 1,
+    "statMod": { "spdFlat": 25 }
+  },
+  {
+    "id": "buff_curse",
+    "name": "诅咒",
+    "icon": "💀",
+    "durationRounds": 2,
+    "maxStacks": 2,
+    "statMod": { "defPct": -0.2 }
+  }
+]
