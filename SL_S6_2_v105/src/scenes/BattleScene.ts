@@ -180,6 +180,9 @@ export default class BattleScene extends BaseScene {
     const stageNow = this.game.state.stage;
     this.directive = await this.ensureDirectiveForStage(stageNow);
 
+    // Ignore stale async completion when a newer restart already began.
+    if (this.runId !== rid) return;
+
     const teamA = this.buildPlayerTeam(heroes);
     const { teamB, title } = this.buildEnemyTeam(heroes);
     this.title.text = title;
