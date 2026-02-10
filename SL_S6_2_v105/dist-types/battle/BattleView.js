@@ -9,13 +9,13 @@ import FighterNode from './FighterNode';
 // 配置常量
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 const ARENA_W = 700;
-const ARENA_H = 820;
-const LOG_H = 100;
+const ARENA_H = 980;
+const LOG_H = 140;
 const FIGHT_H = ARENA_H - LOG_H;
 // ❷ 紧缩布局: 缩小间距
-const Y_ENEMY = FIGHT_H * 0.22; // 敌方行 (was 0.28)
-const Y_ALLY = FIGHT_H * 0.62; // 我方行 (was 0.72)
-const Y_VS = FIGHT_H * 0.42; // VS 线 (was 0.50)
+const Y_ENEMY = FIGHT_H * 0.24; // 敌方行（下移，拉开顶部密度）
+const Y_ALLY = FIGHT_H * 0.74; // 我方行（下移，利用下方空间）
+const Y_VS = FIGHT_H * 0.50; // VS 线（居中分隔）
 /** 技能颜色映射 */
 const SKILL_COLOR = {
     sk_fireball: 0xff6633, sk_sweep: 0xffaa22, sk_heal: 0x54ff8d,
@@ -195,9 +195,9 @@ export default class BattleView {
         this.logBg.position.set(14, logY);
         this.logScroll = new ScrollView(ARENA_W - 28, LOG_H);
         this.logScroll.position.set(14, logY);
-        this.logText = createText('', 13, 0xd7e6ff, '700');
+        this.logText = createText('', 14, 0xd7e6ff, '700');
         this.logText.position.set(10, 6);
-        Object.assign(this.logText.style, { wordWrap: true, wordWrapWidth: ARENA_W - 48, lineHeight: 17 });
+        Object.assign(this.logText.style, { wordWrap: true, wordWrapWidth: ARENA_W - 48, lineHeight: 18 });
         this.logScroll.content.addChild(this.logText);
         this.uiLayer.addChild(this.logBg, this.logScroll);
         // ❹ 初始隐藏日志
@@ -395,7 +395,7 @@ export default class BattleView {
     computeXPositions(count, cx) {
         if (count <= 1)
             return [cx];
-        const step = Math.min(150, 520 / (count - 1));
+        const step = Math.min(176, 600 / (count - 1));
         const start = cx - (step * (count - 1)) / 2;
         return Array.from({ length: count }, (_, i) => start + step * i);
     }

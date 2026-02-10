@@ -166,16 +166,16 @@ class BattleScene extends BaseScene {
     onResize(w, h) {
         if (this.title?.destroyed)
             return;
-        this.title.position.set(w / 2, 165);
+        this.title.position.set(w / 2, 158);
         // AI Director line
-        this.directiveText.position.set(w / 2, 205);
+        this.directiveText.position.set(w / 2, 198);
         this.directiveText.style.wordWrapWidth = Math.max(200, w - 80);
         const cx = w / 2;
-        this.btnSpeed.position.set(cx - 160, 235);
-        this.btnRestart.position.set(cx + 10, 235);
+        this.btnSpeed.position.set(cx - 160, 228);
+        this.btnRestart.position.set(cx + 10, 228);
         const root = this.engine?.view?.root;
         if (root && !root.destroyed)
-            root.position.set((w - 700) / 2, 300);
+            root.position.set((w - 700) / 2, 278);
     }
     onUpdate(dt) {
         this.engine.update(dt);

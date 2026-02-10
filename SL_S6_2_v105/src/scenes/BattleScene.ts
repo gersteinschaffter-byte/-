@@ -135,18 +135,18 @@ export default class BattleScene extends BaseScene {
 
   override onResize(w: number, h: number): void {
     if ((this.title as any)?.destroyed) return;
-    this.title.position.set(w / 2, 165);
+    this.title.position.set(w / 2, 158);
 
     // AI Director line
-    this.directiveText.position.set(w / 2, 205);
+    this.directiveText.position.set(w / 2, 198);
     (this.directiveText.style as any).wordWrapWidth = Math.max(200, w - 80);
 
     const cx = w / 2;
-    this.btnSpeed.position.set(cx - 160, 235);
-    this.btnRestart.position.set(cx + 10, 235);
+    this.btnSpeed.position.set(cx - 160, 228);
+    this.btnRestart.position.set(cx + 10, 228);
 
     const root: any = this.engine?.view?.root;
-    if (root && !root.destroyed) root.position.set((w - 700) / 2, 300);
+    if (root && !root.destroyed) root.position.set((w - 700) / 2, 278);
   }
 
   override onUpdate(dt: number): void {
