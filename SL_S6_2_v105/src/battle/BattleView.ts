@@ -12,20 +12,25 @@ import FighterNode from './FighterNode';
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 const ARENA_W = 700;
-const ARENA_H = 820;
-const LOG_H   = 100;
+const ARENA_H = 980;
+const LOG_H   = 140;
 const FIGHT_H = ARENA_H - LOG_H;
 
 // ❷ 紧缩布局: 缩小间距
-const Y_ENEMY = FIGHT_H * 0.22;   // 敌方行 (was 0.28)
-const Y_ALLY  = FIGHT_H * 0.62;   // 我方行 (was 0.72)
-const Y_VS    = FIGHT_H * 0.42;   // VS 线 (was 0.50)
+const Y_ENEMY = FIGHT_H * 0.24;   // 敌方行（下移，拉开顶部密度）
+const Y_ALLY  = FIGHT_H * 0.74;   // 我方行（下移，利用下方空间）
+const Y_VS    = FIGHT_H * 0.50;   // VS 线（居中分隔）
 
 /** 技能颜色映射 */
 const SKILL_COLOR: Record<string, number> = {
   sk_fireball: 0xff6633,  sk_sweep: 0xffaa22,  sk_heal: 0x54ff8d,
   sk_aura_heal: 0x88ffcc, sk_warcry: 0xff4444, sk_shield: 0x66ccff,
   sk_poison: 0xcc44ff,    sk_slow: 0x44ddff,
+  sk_raging_inferno: 0xff6633, sk_ember_guard: 0xffaa55,
+  sk_tidal_blessing: 0x66ddff, sk_frost_barrier: 0xa9e7ff,
+  sk_gale_combo: 0x88ffcc, sk_haste_banner: 0x44ddff,
+  sk_solar_judgment: 0xffe07a, sk_holy_aegis: 0x99ddff,
+  sk_nether_burst: 0xbb66ff, sk_curse_mist: 0xaa44ff,
 };
 const DEFAULT_COLOR = 0xffee88;
 
@@ -114,9 +119,9 @@ export default class BattleView {
     this.logBg.position.set(14, logY);
     this.logScroll = new ScrollView(ARENA_W - 28, LOG_H);
     this.logScroll.position.set(14, logY);
-    this.logText = createText('', 13, 0xd7e6ff, '700');
+    this.logText = createText('', 14, 0xd7e6ff, '700');
     this.logText.position.set(10, 6);
-    Object.assign(this.logText.style, { wordWrap: true, wordWrapWidth: ARENA_W - 48, lineHeight: 17 });
+    Object.assign(this.logText.style, { wordWrap: true, wordWrapWidth: ARENA_W - 48, lineHeight: 18 });
     this.logScroll.content.addChild(this.logText);
     this.uiLayer.addChild(this.logBg, this.logScroll);
 
@@ -139,6 +144,7 @@ export default class BattleView {
       actorTurn:  (p) => this.onActorTurn(p),
       skillUse:   (p) => this.onSkillUse(p),
       heal:       (p) => this.onHeal(p),
+      shield:     (p) => this.onShield(p),
       damage:     (p) => this.onDamage(p),
       buffAdd:    (p) => this.onBuffAdd(p),
       buffRemove: (p) => this.onBuffRemove(p),
@@ -221,24 +227,31 @@ export default class BattleView {
     this.log(`${node.getName()} 使用【${p.skillName}】`);
   }
 
-  private onHeal(p: { targetId: string; amount: number; targetHp: number; targetMaxHp: number }): void {
+  private onHeal(p: { targetId: string; amount: number; targetHp: number; targetMaxHp: number; targetShield?: number; targetMaxShield?: number }): void {
     const tar = this.nodes.get(p.targetId);
     if (!tar) return;
-    tar.applyHeal(p.amount, p.targetHp, p.targetMaxHp, this.fx);
+    tar.applyHeal(p.amount, p.targetHp, p.targetMaxHp, p.targetShield ?? 0, p.targetMaxShield ?? p.targetMaxHp, this.fx);
     this.fx.expandRing(tar.x, tar.y, 0x54ff8d);
     this.log(`${tar.getName()} +${p.amount}`);
   }
 
+  private onShield(p: { sourceId: string; targetId: string; amount: number; targetShield: number; targetMaxShield: number }): void {
+    const tar = this.nodes.get(p.targetId);
+    if (!tar) return;
+    tar.applyShield(p.amount, p.targetShield, p.targetMaxShield, this.fx);
+    this.log(`${tar.getName()} 获得护盾 +${p.amount}`);
+  }
+
   private onDamage(p: {
-    sourceId: string; targetId: string; amount: number;
-    targetHp: number; targetMaxHp: number; elementBonus?: number;
+    sourceId: string; targetId: string; amount: number; absorbed?: number;
+    targetHp: number; targetMaxHp: number; targetShield?: number; targetMaxShield?: number; elementBonus?: number;
   }): void {
     const src = this.nodes.get(p.sourceId);
     const tar = this.nodes.get(p.targetId);
     if (!tar) return;
 
     if (p.sourceId === p.targetId) {
-      tar.applyDamage(p.amount, p.targetHp, p.targetMaxHp, this.fx, this.runner, 0xcc44ff);
+      tar.applyDamage(p.amount, p.targetHp, p.targetMaxHp, p.targetShield ?? 0, p.targetMaxShield ?? p.targetMaxHp, this.fx, this.runner, 0xcc44ff, p.absorbed ?? 0);
       this.log(`${tar.getName()} 持续伤害 -${p.amount}`);
       return;
     }
@@ -262,9 +275,10 @@ export default class BattleView {
         { color: 0x88aacc, fontSize: 16, rise: 32, life: 38 });
     }
 
-    tar.applyDamage(p.amount, p.targetHp, p.targetMaxHp, this.fx, this.runner, dmgColor);
+    tar.applyDamage(p.amount, p.targetHp, p.targetMaxHp, p.targetShield ?? 0, p.targetMaxShield ?? p.targetMaxHp, this.fx, this.runner, dmgColor, p.absorbed ?? 0);
     const sname = src?.getName() ?? p.sourceId;
-    this.log(`${sname} → ${tar.getName()} -${p.amount}${tag}`);
+    const absorbTag = (p.absorbed ?? 0) > 0 ? ` (护盾吸收:${p.absorbed})` : '';
+    this.log(`${sname} → ${tar.getName()} -${p.amount}${tag}${absorbTag}`);
   }
 
   private onBuffAdd(p: { sourceId: string; targetId: string; buffId: string }): void {
@@ -336,7 +350,7 @@ export default class BattleView {
 
   private computeXPositions(count: number, cx: number): number[] {
     if (count <= 1) return [cx];
-    const step = Math.min(150, 520 / (count - 1));
+    const step = Math.min(176, 600 / (count - 1));
     const start = cx - (step * (count - 1)) / 2;
     return Array.from({ length: count }, (_, i) => start + step * i);
   }

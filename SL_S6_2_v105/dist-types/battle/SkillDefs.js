@@ -17,7 +17,7 @@ function makeTrigger(type, chance) {
     };
 }
 function makeEffect(def) {
-    const { effectType, power, buffId, target } = def;
+    const { effectType, power, hpPct, shieldPct, shieldValue, buffId, buffStacks, removeCount, target } = def;
     return {
         type: effectType,
         apply(ctx, api) {
@@ -35,14 +35,53 @@ function makeEffect(def) {
                         api.heal(ctx.sourceId, tid, Math.max(1, Math.floor(atk * (power ?? 1))));
                         break;
                     }
+                    case 'damageByTargetMaxHpPct': {
+                        const maxHp = ex.getMaxHp(tid);
+                        const ratio = Math.max(0, hpPct ?? 0);
+                        api.dealDamage(ctx.sourceId, tid, Math.max(1, Math.floor(maxHp * ratio)));
+                        break;
+                    }
+                    case 'healByTargetMaxHpPct': {
+                        const maxHp = ex.getMaxHp(tid);
+                        const ratio = Math.max(0, hpPct ?? 0);
+                        api.heal(ctx.sourceId, tid, Math.max(1, Math.floor(maxHp * ratio)));
+                        break;
+                    }
+                    case 'addShieldBySourceAtkPct': {
+                        const atk = ex.getAtk(ctx.sourceId);
+                        const ratio = Math.max(0, shieldPct ?? 0);
+                        api.addShield(ctx.sourceId, tid, Math.max(1, Math.floor(atk * ratio)));
+                        break;
+                    }
+                    case 'addShieldByTargetMaxHpPct': {
+                        const maxHp = ex.getMaxHp(tid);
+                        const ratio = Math.max(0, shieldPct ?? 0);
+                        api.addShield(ctx.sourceId, tid, Math.max(1, Math.floor(maxHp * ratio)));
+                        break;
+                    }
+                    case 'addShieldFlat': {
+                        api.addShield(ctx.sourceId, tid, Math.max(1, Math.floor(shieldValue ?? 1)));
+                        break;
+                    }
                     case 'addBuff':
                         if (buffId)
-                            api.addBuff(ctx.sourceId, tid, buffId, 1);
+                            api.addBuff(ctx.sourceId, tid, buffId, Math.max(1, Math.floor(buffStacks ?? 1)));
                         break;
                     case 'removeBuff':
                         if (buffId)
                             api.removeBuff(tid, buffId);
                         break;
+                    case 'removeRandomBuff': {
+                        const ids = ex.getBuffIds(tid);
+                        const n = Math.max(1, Math.floor(removeCount ?? 1));
+                        for (let i = 0; i < n && ids.length > 0; i++) {
+                            const idx = Math.floor(Math.random() * ids.length);
+                            const bid = ids.splice(idx, 1)[0];
+                            if (bid)
+                                api.removeBuff(tid, bid);
+                        }
+                        break;
+                    }
                 }
             }
         },
@@ -57,6 +96,13 @@ function resolveTargets(strategy, ctx, api) {
         case 'lowestAlly': {
             const id = api.getLowestHpAllyId(ctx.sourceId);
             return id ? [id] : [ctx.sourceId];
+        }
+        case 'randomEnemy': {
+            const ids = api.getAliveEnemyIds(ctx.sourceId);
+            if (ids.length <= 0)
+                return [ctx.targetId];
+            const id = ids[Math.floor(Math.random() * ids.length)];
+            return id ? [id] : [ctx.targetId];
         }
         default: return [ctx.targetId];
     }

@@ -97,6 +97,12 @@ export class BattleStatsCollector {
         break;
       }
 
+      case 'shield': {
+        const src = this.fighters.get(e.payload.sourceId);
+        if (src) src.shielding += e.payload.amount;
+        break;
+      }
+
       case 'buffAdd': {
         const src = this.fighters.get(e.payload.sourceId);
         if (src) {

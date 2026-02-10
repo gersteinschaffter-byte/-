@@ -14,6 +14,10 @@ export interface FighterSnapshot {
   side: Side;
   hp: number;
   maxHp: number;
+  /** Current shield amount (absorbs damage before HP). */
+  shield?: number;
+  /** Optional cap for shield display/logic. Defaults to maxHp. */
+  maxShield?: number;
   atk: number;
   def: number;
   spd: number;
@@ -36,11 +40,12 @@ export type BattleEvent =
   | { type: 'roundStart'; payload: { round: number } }
   | { type: 'actorTurn'; payload: { round: number; actorId: string } }
   | { type: 'skillUse'; payload: { actorId: string; skillId: string; skillName: string } }
-  | { type: 'heal'; payload: { sourceId: string; targetId: string; amount: number; targetHp: number; targetMaxHp: number } }
+  | { type: 'heal'; payload: { sourceId: string; targetId: string; amount: number; targetHp: number; targetMaxHp: number; targetShield?: number; targetMaxShield?: number } }
   | {
       type: 'damage';
-      payload: { sourceId: string; targetId: string; amount: number; targetHp: number; targetMaxHp: number; elementBonus?: number };
+      payload: { sourceId: string; targetId: string; amount: number; absorbed?: number; targetHp: number; targetMaxHp: number; targetShield?: number; targetMaxShield?: number; elementBonus?: number };
     }
+  | { type: 'shield'; payload: { sourceId: string; targetId: string; amount: number; targetShield: number; targetMaxShield: number } }
   | { type: 'buffAdd'; payload: { sourceId: string; targetId: string; buffId: string; stacks: number } }
   | { type: 'buffRemove'; payload: { targetId: string; buffId: string } }
   | { type: 'dead'; payload: { targetId: string } }

@@ -137,8 +137,8 @@ export default class BattleLogic {
         this.phase = 'idle';
         this.turnOrder = [];
         this.turnIndex = 0;
-        this.teamA = setup.teamA.map((f) => ({ ...f }));
-        this.teamB = setup.teamB.map((f) => ({ ...f }));
+        this.teamA = setup.teamA.map((f) => ({ ...f, shield: Math.max(0, Math.floor(f.shield ?? 0)), maxShield: Math.max(1, Math.floor(f.maxShield ?? f.maxHp ?? 1)) }));
+        this.teamB = setup.teamB.map((f) => ({ ...f, shield: Math.max(0, Math.floor(f.shield ?? 0)), maxShield: Math.max(1, Math.floor(f.maxShield ?? f.maxHp ?? 1)) }));
         this.fighterMap = new Map();
         for (const f of [...this.teamA, ...this.teamB])
             this.fighterMap.set(f.id, f);
@@ -353,6 +353,7 @@ export default class BattleLogic {
             heal: (s, t, a) => this.heal(s, t, a),
             addBuff: (s, t, b, n) => this.addBuff(s, t, b, n ?? 1),
             removeBuff: (t, b) => this.removeBuff(t, b),
+            addShield: (s, t, a) => this.addShield(s, t, a),
             // Extended helpers used by SkillDefs effects.
             getAtk: (id) => {
                 const f = this.findFighter(id);
@@ -380,6 +381,15 @@ export default class BattleLogic {
                 alive.sort((a, b) => (a.hp / a.maxHp) - (b.hp / b.maxHp));
                 return alive[0].id;
             },
+            getCurrentHp: (id) => {
+                const f = this.findFighter(id);
+                return f?.hp ?? 0;
+            },
+            getMaxHp: (id) => {
+                const f = this.findFighter(id);
+                return f?.maxHp ?? 0;
+            },
+            getBuffIds: (id) => this.buffSystem.getBuffs(id).map((b) => b.id),
         };
     }
     // ── Buff stat helpers ──────────────────────────────
@@ -459,8 +469,27 @@ export default class BattleLogic {
         if (!target || target.hp <= 0)
             return;
         const a = Math.max(1, Math.floor(amount));
-        target.hp = Math.max(0, target.hp - a);
-        this.emitter.emit({ type: 'damage', payload: { sourceId, targetId, amount: a, targetHp: target.hp, targetMaxHp: target.maxHp, elementBonus } });
+        const shieldNow = Math.max(0, Math.floor(target.shield ?? 0));
+        const absorbed = Math.min(shieldNow, a);
+        const rest = Math.max(0, a - absorbed);
+        if (absorbed > 0)
+            target.shield = shieldNow - absorbed;
+        if (rest > 0)
+            target.hp = Math.max(0, target.hp - rest);
+        this.emitter.emit({
+            type: 'damage',
+            payload: {
+                sourceId,
+                targetId,
+                amount: a,
+                absorbed,
+                targetHp: target.hp,
+                targetMaxHp: target.maxHp,
+                targetShield: Math.max(0, Math.floor(target.shield ?? 0)),
+                targetMaxShield: Math.max(1, Math.floor(target.maxShield ?? target.maxHp)),
+                elementBonus,
+            },
+        });
         if (target.hp <= 0)
             this.emitter.emit({ type: 'dead', payload: { targetId } });
     }
@@ -470,7 +499,33 @@ export default class BattleLogic {
             return;
         const a = Math.max(1, Math.floor(amount));
         target.hp = Math.min(target.maxHp, target.hp + a);
-        this.emitter.emit({ type: 'heal', payload: { sourceId, targetId, amount: a, targetHp: target.hp, targetMaxHp: target.maxHp } });
+        this.emitter.emit({
+            type: 'heal',
+            payload: {
+                sourceId,
+                targetId,
+                amount: a,
+                targetHp: target.hp,
+                targetMaxHp: target.maxHp,
+                targetShield: Math.max(0, Math.floor(target.shield ?? 0)),
+                targetMaxShield: Math.max(1, Math.floor(target.maxShield ?? target.maxHp)),
+            },
+        });
+    }
+    addShield(sourceId, targetId, amount) {
+        const target = this.findFighter(targetId);
+        if (!target || target.hp <= 0)
+            return;
+        const a = Math.max(1, Math.floor(amount));
+        const cap = Math.max(1, Math.floor(target.maxShield ?? target.maxHp));
+        const before = Math.max(0, Math.floor(target.shield ?? 0));
+        const next = Math.min(cap, before + a);
+        const gained = Math.max(0, next - before);
+        target.shield = next;
+        target.maxShield = cap;
+        if (gained <= 0)
+            return;
+        this.emitter.emit({ type: 'shield', payload: { sourceId, targetId, amount: gained, targetShield: next, targetMaxShield: cap } });
     }
     addBuff(sourceId, targetId, buffId, stacks = 1) {
         this.buffSystem.addBuff(sourceId, targetId, buffId, stacks, this.round);
