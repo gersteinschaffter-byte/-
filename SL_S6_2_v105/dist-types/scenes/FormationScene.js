@@ -1,0 +1,446 @@
+import { Container, Graphics } from 'pixi.js';
+import BaseScene from './BaseScene';
+import { HEROES, HERO_MAP } from '../game/data';
+import HeroCard from '../ui/components/HeroCard';
+import ScrollView from '../ui/components/ScrollView';
+import UIButton from '../ui/components/UIButton';
+import { createText, drawPanel, roundedRect } from '../ui/uiFactory';
+const MAX_SLOTS = 5;
+export default class FormationScene extends BaseScene {
+    constructor(game) {
+        super('formation');
+        Object.defineProperty(this, "game", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "title", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "hint", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "actionHint", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "panel", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "slotsContainer", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "slotActionBar", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "btnRemove", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "btnReplace", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "btnSave", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "scroll", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "heroListContainer", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "emptyHeroText", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "slotUIs", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        Object.defineProperty(this, "heroCards", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: new Map()
+        });
+        Object.defineProperty(this, "heroOrder", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        Object.defineProperty(this, "pendingSlots", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: Array(MAX_SLOTS).fill(null)
+        });
+        Object.defineProperty(this, "selectedSlotIndex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: null
+        });
+        Object.defineProperty(this, "choosingHero", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        Object.defineProperty(this, "scrollViewW", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "scrollViewH", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "unsubs", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        this.game = game;
+        this.title = createText('布阵', 44, 0xffffff, '900');
+        this.title.anchor.set(0.5);
+        this.root.addChild(this.title);
+        this.hint = createText('点击英雄卡：空槽位自动上阵；点击槽位可选择/交换', 18, 0xcfe3ff, '700');
+        this.hint.anchor.set(0.5);
+        this.root.addChild(this.hint);
+        this.actionHint = createText('', 18, 0xffe29a, '800');
+        this.actionHint.anchor.set(0.5);
+        this.root.addChild(this.actionHint);
+        this.panel = drawPanel(700, 1060, 0.96);
+        this.root.addChild(this.panel);
+        this.slotsContainer = new Container();
+        this.panel.addChild(this.slotsContainer);
+        this.slotActionBar = new Container();
+        this.panel.addChild(this.slotActionBar);
+        this.btnRemove = new UIButton('移除', 180, 64);
+        this.btnReplace = new UIButton('更换', 180, 64);
+        this.slotActionBar.addChild(this.btnRemove, this.btnReplace);
+        this.slotActionBar.visible = false;
+        this.btnSave = new UIButton('保存阵容', 260, 72);
+        this.root.addChild(this.btnSave);
+        this.scroll = new ScrollView(660, 600);
+        this.panel.addChild(this.scroll);
+        this.heroListContainer = new Container();
+        this.scroll.content.addChild(this.heroListContainer);
+        this.emptyHeroText = createText('暂无已拥有英雄', 22, 0x9fb3d9, '700');
+        this.emptyHeroText.anchor.set(0.5);
+        this.heroListContainer.addChild(this.emptyHeroText);
+        this.btnSave.on('pointertap', () => this.saveFormation());
+        this.btnRemove.on('pointertap', () => this.removeSelectedSlotHero());
+        this.btnReplace.on('pointertap', () => this.enableReplaceMode());
+        this.buildSlotUI();
+    }
+    onEnter() {
+        this.loadFromState();
+        this.rebuildHeroList();
+        this.updateSlotUI();
+        this.updateActionHint();
+        this.unsubs.forEach((u) => {
+            try {
+                u();
+            }
+            catch (_) { }
+        });
+        this.unsubs = [];
+        this.unsubs.push(this.game.state.on('heroesChanged', () => {
+            this.rebuildHeroList();
+            this.updateSlotUI();
+        }));
+    }
+    onExit() {
+        this.unsubs.forEach((u) => {
+            try {
+                u();
+            }
+            catch (_) { }
+        });
+        this.unsubs = [];
+    }
+    onResize(w, h) {
+        this.title.position.set(w / 2, 110);
+        this.hint.position.set(w / 2, 156);
+        this.actionHint.position.set(w / 2, 184);
+        this.panel.position.set((w - this.panel.width) / 2, 210);
+        const panelW = this.panel.width;
+        const panelH = this.panel.height;
+        this.layoutSlots(panelW);
+        this.layoutActionBar(panelW);
+        const scrollTop = 300;
+        const scrollPadding = 20;
+        const scrollW = panelW - scrollPadding * 2;
+        const scrollH = panelH - scrollTop - 120;
+        this.scroll.position.set(scrollPadding, scrollTop);
+        this.scroll.resize(scrollW, scrollH);
+        this.scrollViewW = scrollW;
+        this.scrollViewH = scrollH;
+        this.layoutHeroCards();
+        if (this.heroOrder.length === 0) {
+            this.emptyHeroText.position.set(this.scrollViewW / 2, 80);
+            this.scroll.setContentHeight(Math.max(this.scrollViewH, 160));
+        }
+        this.btnSave.position.set((w - 260) / 2, h - 120);
+        this.updateSlotUI();
+        this.updateActionHint();
+    }
+    buildSlotUI() {
+        for (let i = 0; i < MAX_SLOTS; i += 1) {
+            const container = new Container();
+            const bg = new Graphics();
+            const indexText = createText(`槽位 ${i + 1}`, 18, 0xcfe3ff, '800');
+            indexText.anchor.set(0.5);
+            const nameText = createText('空位', 20, 0xffffff, '800');
+            nameText.anchor.set(0.5);
+            const hintText = createText('', 16, 0x9fb3d9, '700');
+            hintText.anchor.set(0.5);
+            container.addChild(bg, indexText, nameText, hintText);
+            container.interactive = true;
+            container.cursor = 'pointer';
+            container.on('pointertap', () => this.handleSlotTap(i));
+            this.slotUIs.push({ container, bg, indexText, nameText, hintText, w: 0, h: 0 });
+            this.slotsContainer.addChild(container);
+        }
+    }
+    layoutSlots(panelW) {
+        const gap = 12;
+        const slotW = Math.floor((panelW - gap * 4) / 5);
+        const slotH = 96;
+        for (let i = 0; i < this.slotUIs.length; i += 1) {
+            const slot = this.slotUIs[i];
+            slot.container.position.set(i * (slotW + gap), 20);
+            slot.w = slotW;
+            slot.h = slotH;
+            slot.bg.clear();
+            slot.bg.lineStyle(2, 0x365a9a, 0.9);
+            slot.bg.beginFill(0x0e1733, 0.95);
+            roundedRect(slot.bg, 0, 0, slotW, slotH, 16);
+            slot.bg.endFill();
+            slot.indexText.position.set(slotW / 2, 22);
+            slot.nameText.position.set(slotW / 2, 50);
+            slot.hintText.position.set(slotW / 2, 74);
+        }
+    }
+    layoutActionBar(panelW) {
+        this.slotActionBar.position.set((panelW - 380) / 2, 130);
+        this.btnRemove.position.set(0, 0);
+        this.btnReplace.position.set(200, 0);
+    }
+    handleSlotTap(index) {
+        if (this.selectedSlotIndex !== null && this.selectedSlotIndex !== index) {
+            this.swapSlots(this.selectedSlotIndex, index);
+            return;
+        }
+        const heroId = this.pendingSlots[index];
+        this.selectedSlotIndex = index;
+        if (!heroId) {
+            this.choosingHero = true;
+        }
+        else {
+            this.choosingHero = false;
+        }
+        this.updateSlotUI();
+        this.updateActionHint();
+    }
+    swapSlots(a, b) {
+        const tmp = this.pendingSlots[a];
+        this.pendingSlots[a] = this.pendingSlots[b];
+        this.pendingSlots[b] = tmp ?? null;
+        this.selectedSlotIndex = null;
+        this.choosingHero = false;
+        this.updateSlotUI();
+        this.updateActionHint();
+    }
+    removeSelectedSlotHero() {
+        if (this.selectedSlotIndex === null)
+            return;
+        const heroId = this.pendingSlots[this.selectedSlotIndex];
+        if (!heroId)
+            return;
+        this.pendingSlots[this.selectedSlotIndex] = null;
+        this.selectedSlotIndex = null;
+        this.choosingHero = false;
+        this.updateSlotUI();
+        this.updateActionHint();
+    }
+    enableReplaceMode() {
+        if (this.selectedSlotIndex === null)
+            return;
+        if (!this.pendingSlots[this.selectedSlotIndex])
+            return;
+        this.choosingHero = true;
+        this.updateSlotUI();
+        this.updateActionHint();
+    }
+    onHeroTap(heroId) {
+        if (this.choosingHero && this.selectedSlotIndex !== null) {
+            this.placeHeroInSlot(heroId, this.selectedSlotIndex);
+            this.selectedSlotIndex = null;
+            this.choosingHero = false;
+            this.updateSlotUI();
+            this.updateActionHint();
+            return;
+        }
+        const emptyIndex = this.pendingSlots.findIndex((slotId) => !slotId);
+        if (emptyIndex === -1) {
+            this.game.toast.show('队伍已满，请先选择槽位更换', 2);
+            return;
+        }
+        this.placeHeroInSlot(heroId, emptyIndex);
+        this.updateSlotUI();
+        this.updateActionHint();
+    }
+    placeHeroInSlot(heroId, slotIndex) {
+        this.pendingSlots = this.pendingSlots.map((id, idx) => (idx === slotIndex ? id : id === heroId ? null : id));
+        this.pendingSlots[slotIndex] = heroId;
+    }
+    loadFromState() {
+        const raw = [...(this.game.state.partySlots ?? [])].slice(0, MAX_SLOTS);
+        this.pendingSlots = Array.from({ length: MAX_SLOTS }, (_, i) => raw[i] ?? null);
+        this.selectedSlotIndex = null;
+        this.choosingHero = false;
+    }
+    updateSlotUI() {
+        const inParty = new Set(this.pendingSlots.filter((id) => !!id));
+        for (let i = 0; i < this.slotUIs.length; i += 1) {
+            const slot = this.slotUIs[i];
+            const heroId = this.pendingSlots[i];
+            const hero = heroId ? HERO_MAP[heroId] : null;
+            slot.nameText.text = hero ? hero.name : '空位';
+            slot.hintText.text = hero ? `Lv.${this.game.state.getOwnedHero(heroId)?.level ?? 1}` : '点击选择';
+            const isSelected = this.selectedSlotIndex === i;
+            slot.bg.clear();
+            slot.bg.lineStyle(3, isSelected ? 0xffd07a : 0x365a9a, isSelected ? 1 : 0.9);
+            slot.bg.beginFill(0x0e1733, 0.95);
+            roundedRect(slot.bg, 0, 0, slot.w || 1, slot.h || 1, 16);
+            slot.bg.endFill();
+            if (!hero) {
+                slot.hintText.text = isSelected && this.choosingHero ? '选择英雄' : '点击选择';
+            }
+        }
+        this.slotActionBar.visible = this.selectedSlotIndex !== null && !!this.pendingSlots[this.selectedSlotIndex];
+        this.btnReplace.setDisabled(!(this.selectedSlotIndex !== null && this.pendingSlots[this.selectedSlotIndex]));
+        for (const id of this.heroOrder) {
+            const card = this.heroCards.get(id);
+            if (card)
+                card.setInParty(inParty.has(id));
+        }
+    }
+    updateActionHint() {
+        if (this.selectedSlotIndex === null) {
+            this.actionHint.text = '';
+            return;
+        }
+        if (this.choosingHero) {
+            this.actionHint.text = `已选择槽位 ${this.selectedSlotIndex + 1}，请点击英雄放入`;
+            return;
+        }
+        if (this.pendingSlots[this.selectedSlotIndex]) {
+            this.actionHint.text = `已选择槽位 ${this.selectedSlotIndex + 1}：可移除/更换，或点另一个槽位交换`;
+            return;
+        }
+        this.actionHint.text = `已选择槽位 ${this.selectedSlotIndex + 1}，点击英雄放入`;
+    }
+    rebuildHeroList() {
+        this.heroCards.clear();
+        this.heroOrder = [];
+        this.heroListContainer.removeChildren();
+        this.heroListContainer.addChild(this.emptyHeroText);
+        const ownedMap = new Map(this.game.state.heroes.map((h) => [h.heroId, h]));
+        const ownedHeroes = HEROES.filter((h) => ownedMap.has(h.id));
+        if (ownedHeroes.length === 0) {
+            this.emptyHeroText.visible = true;
+            this.emptyHeroText.position.set(this.scrollViewW / 2, 80);
+            this.scroll.setContentHeight(Math.max(this.scrollViewH, 160));
+            return;
+        }
+        this.emptyHeroText.visible = false;
+        for (const hero of ownedHeroes) {
+            const owned = ownedMap.get(hero.id);
+            if (!owned)
+                continue;
+            const card = new HeroCard(hero, owned);
+            card.on('pointertap', () => this.onHeroTap(hero.id));
+            this.heroCards.set(hero.id, card);
+            this.heroOrder.push(hero.id);
+            this.heroListContainer.addChild(card);
+        }
+        this.layoutHeroCards();
+        this.updateSlotUI();
+    }
+    layoutHeroCards() {
+        const count = this.heroOrder.length;
+        if (count === 0)
+            return;
+        const cardW = 214;
+        const cardH = 268;
+        const gapX = 14;
+        const gapY = 16;
+        const maxCols = 3;
+        const cols = Math.max(1, Math.min(maxCols, Math.floor((this.scrollViewW + gapX) / (cardW + gapX))));
+        const totalW = cols * cardW + (cols - 1) * gapX;
+        const startX = Math.max(0, Math.floor((this.scrollViewW - totalW) / 2));
+        for (let i = 0; i < count; i += 1) {
+            const id = this.heroOrder[i];
+            const card = this.heroCards.get(id);
+            if (!card)
+                continue;
+            const col = i % cols;
+            const row = Math.floor(i / cols);
+            const x = startX + col * (cardW + gapX);
+            const y = 10 + row * (cardH + gapY);
+            card.position.set(x, y);
+        }
+        const rows = Math.ceil(count / cols);
+        const contentH = 10 + rows * (cardH + gapY);
+        this.scroll.setContentHeight(Math.max(this.scrollViewH, contentH));
+    }
+    saveFormation() {
+        this.game.state.setPartySlots(this.pendingSlots);
+        this.game.toast.show('阵容已保存', 1.5);
+        this.game.goTo('heroes', { animate: false });
+    }
+}

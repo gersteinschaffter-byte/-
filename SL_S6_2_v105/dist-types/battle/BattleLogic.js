@@ -1,0 +1,504 @@
+import { BATTLE } from '../game/config';
+import SkillSystem from './SkillSystem';
+import BuffSystem from './BuffSystem';
+import { SkillRegistry, BuffRegistry } from './SkillRegistry';
+import { getBuffJson, getSkillName } from './SkillDefs';
+/**
+ * BattleLogic — pure simulation layer (no Pixi).
+ *
+ * Architecture:
+ * - Per-actor stepping (one action per step()) for paced animation.
+ * - Skill system: passive triggers (chance-based) + active skills (CD-based).
+ * - Buff stat mods: atkPct/atkFlat, defFlat/defPct, dmgReduce, spdFlat.
+ * - DoT ticks at configurable granularity (per-round or per-turn).
+ * - Elemental advantage system (5-element cycle + light/dark mutual).
+ * - O(1) fighter lookup via fighterMap.
+ */
+/* ── Elemental advantage table ───────────────────────────
+ *   火 → 风 (1.3x)   水 → 火 (1.3x)   风 → 水 (1.3x)
+ *   光 ↔ 暗 (1.25x mutual)
+ *   Being countered = 0.8x (inverse of advantage)
+ *   Neutral = 1.0x
+ */
+const ELEMENT_ADVANTAGE = {
+    '火': { '风': 1.3, '水': 0.8 },
+    '水': { '火': 1.3, '风': 0.8 },
+    '风': { '水': 1.3, '火': 0.8 },
+    '光': { '暗': 1.25 },
+    '暗': { '光': 1.25 },
+};
+function getElementMultiplier(attackerElement, defenderElement) {
+    if (!attackerElement || !defenderElement || attackerElement === defenderElement)
+        return 1;
+    return ELEMENT_ADVANTAGE[attackerElement]?.[defenderElement] ?? 1;
+}
+export default class BattleLogic {
+    constructor(emitter, rng) {
+        Object.defineProperty(this, "emitter", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "rng", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        // Public so BattleEngine can register skills/buffs from JSON config.
+        Object.defineProperty(this, "skillRegistry", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: new SkillRegistry()
+        });
+        Object.defineProperty(this, "buffRegistry", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: new BuffRegistry()
+        });
+        Object.defineProperty(this, "skillSystem", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: new SkillSystem(this.skillRegistry)
+        });
+        Object.defineProperty(this, "buffSystem", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: new BuffSystem(this.buffRegistry)
+        });
+        Object.defineProperty(this, "round", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "over", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: false
+        });
+        // Step state: we advance one actor action per step() for clear pacing.
+        Object.defineProperty(this, "phase", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 'idle'
+        });
+        Object.defineProperty(this, "turnOrder", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        Object.defineProperty(this, "turnIndex", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: 0
+        });
+        Object.defineProperty(this, "teamA", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        Object.defineProperty(this, "teamB", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: []
+        });
+        /** O(1) lookup map — rebuilt on init(). */
+        Object.defineProperty(this, "fighterMap", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: new Map()
+        });
+        /** Active skill cooldowns per fighter (skillId -> remaining turns). */
+        Object.defineProperty(this, "skillCooldowns", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: new Map()
+        });
+        this.emitter = emitter;
+        this.rng = rng ?? Math.random;
+    }
+    init(setup) {
+        this.round = 0;
+        this.over = false;
+        this.phase = 'idle';
+        this.turnOrder = [];
+        this.turnIndex = 0;
+        this.teamA = setup.teamA.map((f) => ({ ...f }));
+        this.teamB = setup.teamB.map((f) => ({ ...f }));
+        this.fighterMap = new Map();
+        for (const f of [...this.teamA, ...this.teamB])
+            this.fighterMap.set(f.id, f);
+        this.skillCooldowns = new Map();
+        for (const f of [...this.teamA, ...this.teamB]) {
+            this.skillCooldowns.set(f.id, {});
+        }
+        this.buffSystem.init([...this.teamA, ...this.teamB]);
+        this.emitter.emit({
+            type: 'battleStart',
+            payload: {
+                teamA: this.teamA.map((f) => ({ ...f })),
+                teamB: this.teamB.map((f) => ({ ...f })),
+            },
+        });
+        // onBattleStart skill triggers (e.g. warcry).
+        const api = this.getSkillApi();
+        for (const f of [...this.teamA, ...this.teamB]) {
+            this.emitSkillFired(f.id, this.skillSystem.tryTrigger('onBattleStart', f, { round: 0, actorId: f.id }, api));
+        }
+    }
+    runToEnd(maxRounds = 30) {
+        // Safety runner for debugging: keep stepping until battle ends or maxRounds reached.
+        // With per-actor stepping, cap total steps by an upper bound.
+        const maxSteps = maxRounds * 32; // enough for typical party sizes
+        for (let i = 0; i < maxSteps && !this.over; i++)
+            this.step();
+        if (!this.over)
+            this.finish('Draw');
+    }
+    /**
+     * Advance simulation by ONE actor action.
+     * Each step performs:
+     * - (when starting a new round) roundStart + DoT + onRoundStart skills + build turn order
+     * - (during turns) a single actorTurn (onTurnStart skills + basic attack + resulting buffs)
+     */
+    step() {
+        if (this.over)
+            return;
+        // Start a new round if needed.
+        if (this.phase === 'idle' || this.turnIndex >= this.turnOrder.length) {
+            this.beginRound();
+            // beginRound may end the battle (DoT / aura etc.)
+            if (this.over)
+                return;
+        }
+        // Execute exactly one alive actor action per step.
+        while (this.turnIndex < this.turnOrder.length && !this.over) {
+            const actorId = this.turnOrder[this.turnIndex++];
+            const actor = this.findFighter(actorId);
+            if (!actor || actor.hp <= 0)
+                continue;
+            const api = this.getSkillApi();
+            this.emitter.emit({ type: 'actorTurn', payload: { round: this.round, actorId: actor.id } });
+            // 0) Active skill cooldowns tick down once per actor action.
+            this.tickCooldowns(actor.id);
+            // 1) Turn-start DoT ticks (poison-per-turn, etc.)
+            this.applyBuffDotsFor(actor.id, 'turn');
+            this.checkBattleEnd();
+            if (this.over)
+                break;
+            // 2) Active skill check (cooldown-based "big moves").
+            const activeSkillId = this.tryPerformActiveSkill(actor);
+            if (activeSkillId) {
+                this.emitSkillFired(actor.id, [activeSkillId]);
+            }
+            else {
+                // 3) Passive onTurnStart skills (chance-based).
+                const firedOnTurnStart = this.skillSystem.tryTrigger('onTurnStart', actor, { round: this.round, actorId: actor.id }, api);
+                this.emitSkillFired(actor.id, firedOnTurnStart);
+                // 4) If no skill fired, fall back to a basic attack.
+                if (firedOnTurnStart.length === 0) {
+                    this.performBasicAttack(actor);
+                }
+            }
+            this.checkBattleEnd();
+            break; // Only one actor action per step.
+        }
+        // If we exhausted the turn list, next step will begin a new round.
+        if (!this.over && this.turnIndex >= this.turnOrder.length) {
+            this.phase = 'idle';
+            if (this.round >= 30)
+                this.finish('Draw');
+        }
+    }
+    isOver() { return this.over; }
+    getRound() { return this.round; }
+    // ── Round orchestration ──────────────────────────
+    beginRound() {
+        if (this.over)
+            return;
+        this.round += 1;
+        this.emitter.emit({ type: 'roundStart', payload: { round: this.round } });
+        this.buffSystem.onRoundStart(this.round);
+        // DoT ticks (poison etc.)
+        this.applyBuffDots();
+        this.checkBattleEnd();
+        if (this.over)
+            return;
+        // onRoundStart skill triggers (e.g. aura heal)
+        const api = this.getSkillApi();
+        for (const f of this.getAllAlive()) {
+            this.emitSkillFired(f.id, this.skillSystem.tryTrigger('onRoundStart', f, { round: this.round, actorId: f.id }, api));
+        }
+        this.checkBattleEnd();
+        if (this.over)
+            return;
+        // Sort by effective SPD (buff-aware) and store turn order for this round.
+        this.turnOrder = this.getAllAlive()
+            .sort((a, b) => this.getEffectiveSpd(b) - this.getEffectiveSpd(a) || a.id.localeCompare(b.id))
+            .map((f) => f.id);
+        this.turnIndex = 0;
+        this.phase = 'turns';
+    }
+    // ── Attack ─────────────────────────────────────────
+    performBasicAttack(actor) {
+        const enemyTeam = actor.side === 'A' ? this.teamB : this.teamA;
+        const targets = enemyTeam.filter((t) => t.hp > 0);
+        if (targets.length === 0)
+            return;
+        const target = this.chooseTarget(actor, targets);
+        const api = this.getSkillApi();
+        this.emitSkillFired(actor.id, this.skillSystem.tryTrigger('onBeforeAttack', actor, { round: this.round, actorId: actor.id, targetId: target.id }, api));
+        // Damage = (effectiveATK × variance - effectiveDEF × 0.3) × elementMult, then reduced by dmgReduce buffs.
+        const variance = BATTLE.damageVarianceMin + this.rng() * (BATTLE.damageVarianceMax - BATTLE.damageVarianceMin);
+        const effectiveAtk = this.getEffectiveAtk(actor);
+        const effectiveDef = this.getEffectiveDef(target);
+        const elementMult = getElementMultiplier(actor.element, target.element);
+        const rawDmg = Math.floor((effectiveAtk * variance - effectiveDef * 0.3) * elementMult);
+        const reduction = this.getDmgReduction(target);
+        const dmg = Math.max(1, Math.floor(rawDmg * (1 - reduction)));
+        this.emitSkillFired(actor.id, this.skillSystem.tryTrigger('onBeforeDamage', actor, { round: this.round, actorId: actor.id, targetId: target.id }, api));
+        this.dealDamage(actor.id, target.id, dmg, elementMult !== 1 ? elementMult : undefined);
+        this.emitSkillFired(actor.id, this.skillSystem.tryTrigger('onAfterDamage', actor, { round: this.round, actorId: actor.id, targetId: target.id }, api));
+        this.emitSkillFired(actor.id, this.skillSystem.tryTrigger('onAfterAttack', actor, { round: this.round, actorId: actor.id, targetId: target.id }, api));
+    }
+    /**
+     * Active skill flow:
+     * - Each fighter can have 0+ active skills with cooldownTurns.
+     * - If any active skill is off cooldown, we cast the highest priority one and consume the action.
+     */
+    tryPerformActiveSkill(actor) {
+        const skillIds = actor.skills ?? [];
+        if (skillIds.length === 0)
+            return undefined;
+        const cds = this.skillCooldowns.get(actor.id) ?? {};
+        const candidates = [];
+        for (const id of skillIds) {
+            const s = this.skillRegistry.get(id);
+            if (!s || s.mode !== 'active')
+                continue;
+            const cdTurns = Math.max(1, s.cooldownTurns ?? 3);
+            const remaining = cds[id] ?? 0;
+            if (remaining > 0)
+                continue;
+            candidates.push({ id, prio: s.priority ?? 0, cd: cdTurns });
+        }
+        if (candidates.length === 0)
+            return undefined;
+        candidates.sort((a, b) => b.prio - a.prio || a.id.localeCompare(b.id));
+        const chosen = candidates[0];
+        // Provide a reasonable default targetId so "current"-target skills behave like attacks.
+        const enemyTeam = actor.side === 'A' ? this.teamB : this.teamA;
+        const targets = enemyTeam.filter((t) => t.hp > 0);
+        const target = targets.length > 0 ? this.chooseTarget(actor, targets) : undefined;
+        const api = this.getSkillApi();
+        const ok = this.skillSystem.executeSkill(chosen.id, actor, { round: this.round, actorId: actor.id, targetId: target?.id }, api);
+        if (!ok)
+            return undefined;
+        // Put skill on cooldown.
+        cds[chosen.id] = chosen.cd;
+        this.skillCooldowns.set(actor.id, cds);
+        return chosen.id;
+    }
+    tickCooldowns(actorId) {
+        const cds = this.skillCooldowns.get(actorId);
+        if (!cds)
+            return;
+        for (const k of Object.keys(cds)) {
+            if (cds[k] > 0)
+                cds[k] -= 1;
+            if (cds[k] <= 0)
+                delete cds[k];
+        }
+    }
+    /**
+     * Pick an attack target from alive candidates.
+     *
+     * Heuristic:
+     * - Prefer lowest HP% (finish off weak targets).
+     * - If tie, prefer the one with more buffs (sets up future dispel logic).
+     * - Stable tie-break by id.
+     */
+    chooseTarget(_actor, candidates) {
+        return [...candidates]
+            .sort((a, b) => {
+            const aHpPct = a.maxHp > 0 ? a.hp / a.maxHp : 0;
+            const bHpPct = b.maxHp > 0 ? b.hp / b.maxHp : 0;
+            if (aHpPct !== bHpPct)
+                return aHpPct - bHpPct; // ascending
+            const aBuffs = this.buffSystem.getBuffs(a.id).length;
+            const bBuffs = this.buffSystem.getBuffs(b.id).length;
+            if (aBuffs !== bBuffs)
+                return bBuffs - aBuffs; // descending
+            return a.id.localeCompare(b.id);
+        })[0];
+    }
+    // ── Skill API (extended) ───────────────────────────
+    getSkillApi() {
+        return {
+            dealDamage: (s, t, a) => this.dealDamage(s, t, a),
+            heal: (s, t, a) => this.heal(s, t, a),
+            addBuff: (s, t, b, n) => this.addBuff(s, t, b, n ?? 1),
+            removeBuff: (t, b) => this.removeBuff(t, b),
+            // Extended helpers used by SkillDefs effects.
+            getAtk: (id) => {
+                const f = this.findFighter(id);
+                return f ? this.getEffectiveAtk(f) : 0;
+            },
+            getAliveEnemyIds: (id) => {
+                const f = this.findFighter(id);
+                if (!f)
+                    return [];
+                return (f.side === 'A' ? this.teamB : this.teamA).filter((t) => t.hp > 0).map((t) => t.id);
+            },
+            getAliveAllyIds: (id) => {
+                const f = this.findFighter(id);
+                if (!f)
+                    return [];
+                return (f.side === 'A' ? this.teamA : this.teamB).filter((t) => t.hp > 0).map((t) => t.id);
+            },
+            getLowestHpAllyId: (id) => {
+                const f = this.findFighter(id);
+                if (!f)
+                    return undefined;
+                const alive = (f.side === 'A' ? this.teamA : this.teamB).filter((t) => t.hp > 0);
+                if (alive.length === 0)
+                    return undefined;
+                alive.sort((a, b) => (a.hp / a.maxHp) - (b.hp / b.maxHp));
+                return alive[0].id;
+            },
+        };
+    }
+    // ── Buff stat helpers ──────────────────────────────
+    getEffectiveAtk(f) {
+        let atk = f.atk;
+        for (const bi of this.buffSystem.getBuffs(f.id)) {
+            const bdef = getBuffJson(bi.id);
+            const mod = bdef?.statMod;
+            if (mod?.atkFlat)
+                atk += mod.atkFlat * bi.stacks;
+            if (mod?.atkPct)
+                atk = Math.floor(atk * (1 + mod.atkPct * bi.stacks));
+        }
+        return Math.max(0, Math.floor(atk));
+    }
+    getEffectiveDef(f) {
+        let df = f.def ?? 0;
+        for (const bi of this.buffSystem.getBuffs(f.id)) {
+            const bdef = getBuffJson(bi.id);
+            const mod = bdef?.statMod;
+            if (mod?.defFlat)
+                df += mod.defFlat * bi.stacks;
+            if (mod?.defPct)
+                df = Math.floor(df * (1 + mod.defPct * bi.stacks));
+        }
+        return Math.max(0, Math.floor(df));
+    }
+    getDmgReduction(f) {
+        let r = 0;
+        for (const bi of this.buffSystem.getBuffs(f.id)) {
+            const def = getBuffJson(bi.id);
+            if (def?.statMod?.dmgReduce)
+                r += def.statMod.dmgReduce * bi.stacks;
+        }
+        return Math.min(0.75, r);
+    }
+    getEffectiveSpd(f) {
+        let spd = f.spd;
+        for (const bi of this.buffSystem.getBuffs(f.id)) {
+            const def = getBuffJson(bi.id);
+            if (def?.statMod?.spdFlat)
+                spd += def.statMod.spdFlat * bi.stacks;
+        }
+        return Math.max(1, spd);
+    }
+    applyBuffDots() {
+        for (const f of this.getAllAlive()) {
+            this.applyBuffDotsFor(f.id, 'round');
+        }
+    }
+    applyBuffDotsFor(fighterId, tick) {
+        const f = this.findFighter(fighterId);
+        if (!f || f.hp <= 0)
+            return;
+        for (const bi of this.buffSystem.getBuffs(f.id)) {
+            const def = getBuffJson(bi.id);
+            const dot = def?.dot;
+            const dotTick = dot?.tick ?? 'round';
+            if (dot?.hpPct && dotTick === tick) {
+                const dmg = Math.max(1, Math.floor(f.maxHp * dot.hpPct * bi.stacks));
+                this.dealDamage(f.id, f.id, dmg);
+            }
+        }
+    }
+    // ── Skill event emission ────────────────────────────
+    emitSkillFired(actorId, firedIds) {
+        for (const id of firedIds) {
+            this.emitter.emit({ type: 'skillUse', payload: { actorId, skillId: id, skillName: getSkillName(id) } });
+        }
+    }
+    // ── Primitives ─────────────────────────────────────
+    findFighter(id) {
+        return this.fighterMap.get(id);
+    }
+    dealDamage(sourceId, targetId, amount, elementBonus) {
+        const target = this.findFighter(targetId);
+        if (!target || target.hp <= 0)
+            return;
+        const a = Math.max(1, Math.floor(amount));
+        target.hp = Math.max(0, target.hp - a);
+        this.emitter.emit({ type: 'damage', payload: { sourceId, targetId, amount: a, targetHp: target.hp, targetMaxHp: target.maxHp, elementBonus } });
+        if (target.hp <= 0)
+            this.emitter.emit({ type: 'dead', payload: { targetId } });
+    }
+    heal(sourceId, targetId, amount) {
+        const target = this.findFighter(targetId);
+        if (!target || target.hp <= 0)
+            return;
+        const a = Math.max(1, Math.floor(amount));
+        target.hp = Math.min(target.maxHp, target.hp + a);
+        this.emitter.emit({ type: 'heal', payload: { sourceId, targetId, amount: a, targetHp: target.hp, targetMaxHp: target.maxHp } });
+    }
+    addBuff(sourceId, targetId, buffId, stacks = 1) {
+        this.buffSystem.addBuff(sourceId, targetId, buffId, stacks, this.round);
+        this.emitter.emit({ type: 'buffAdd', payload: { sourceId, targetId, buffId, stacks } });
+    }
+    removeBuff(targetId, buffId) {
+        this.buffSystem.removeBuff(targetId, buffId);
+        this.emitter.emit({ type: 'buffRemove', payload: { targetId, buffId } });
+    }
+    checkBattleEnd() {
+        const aAlive = this.teamA.some((f) => f.hp > 0);
+        const bAlive = this.teamB.some((f) => f.hp > 0);
+        if (aAlive && bAlive)
+            return;
+        if (aAlive && !bAlive)
+            this.finish('A');
+        else if (!aAlive && bAlive)
+            this.finish('B');
+        else
+            this.finish('Draw');
+    }
+    finish(winner) {
+        if (this.over)
+            return;
+        this.over = true;
+        this.emitter.emit({ type: 'battleEnd', payload: { winner } });
+    }
+    getAllAlive() {
+        return [...this.teamA, ...this.teamB].filter((f) => f.hp > 0);
+    }
+}
