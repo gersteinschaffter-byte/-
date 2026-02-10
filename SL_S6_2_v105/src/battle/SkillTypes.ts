@@ -32,7 +32,17 @@ export interface Trigger {
   match(ctx: TriggerContext): boolean;
 }
 
-export type EffectType = 'damage' | 'heal' | 'addBuff' | 'removeBuff';
+export type EffectType =
+  | 'damage'
+  | 'heal'
+  | 'addBuff'
+  | 'removeBuff'
+  | 'damageByTargetMaxHpPct'
+  | 'healByTargetMaxHpPct'
+  | 'removeRandomBuff'
+  | 'addShieldBySourceAtkPct'
+  | 'addShieldByTargetMaxHpPct'
+  | 'addShieldFlat';
 
 export interface EffectContext {
   round: number;
@@ -80,4 +90,11 @@ export interface SkillRuntimeAPI {
   heal(sourceId: string, targetId: string, amount: number): void;
   addBuff(sourceId: string, targetId: string, buffId: BuffId, stacks?: number): void;
   removeBuff(targetId: string, buffId: BuffId): void;
+  addShield(sourceId: string, targetId: string, amount: number): void;
+
+  // Phase 2: richer effect helpers (optional, backward-compatible).
+  getCurrentHp?(fighterId: string): number;
+  getMaxHp?(fighterId: string): number;
+  getBuffIds?(fighterId: string): BuffId[];
 }
+

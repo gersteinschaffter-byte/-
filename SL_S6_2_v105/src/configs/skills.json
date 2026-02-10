@@ -39,7 +39,7 @@
     "id": "sk_aura_heal",
     "name": "圣光普照",
     "trigger": "onRoundStart",
-    "chance": 0.20,
+    "chance": 0.2,
     "effectType": "heal",
     "power": 0.4,
     "target": "allAlly"
@@ -57,7 +57,7 @@
     "id": "sk_shield",
     "name": "坚壁",
     "trigger": "onTurnStart",
-    "chance": 0.30,
+    "chance": 0.3,
     "effectType": "addBuff",
     "buffId": "buff_shield",
     "target": "self"
@@ -75,7 +75,7 @@
     "id": "sk_slow",
     "name": "冰缚",
     "trigger": "onAfterAttack",
-    "chance": 0.30,
+    "chance": 0.3,
     "effectType": "addBuff",
     "buffId": "buff_slow",
     "target": "current"
@@ -117,7 +117,7 @@
     "id": "sk_weaken",
     "name": "削弱之触",
     "trigger": "onAfterAttack",
-    "chance": 0.30,
+    "chance": 0.3,
     "effectType": "addBuff",
     "buffId": "buff_weaken",
     "target": "current"
@@ -198,9 +198,119 @@
     "id": "sk_empower",
     "name": "赋能",
     "trigger": "onRoundStart",
-    "chance": 0.20,
+    "chance": 0.2,
     "effectType": "addBuff",
     "buffId": "buff_atk_up",
     "target": "allAlly"
+  },
+  {
+    "id": "sk_raging_inferno",
+    "name": "炎帝·焚界",
+    "mode": "active",
+    "cooldownTurns": 4,
+    "priority": 45,
+    "trigger": "onTurnStart",
+    "chance": 0,
+    "effectType": "damageByTargetMaxHpPct",
+    "power": 2.8,
+    "target": "current",
+    "hpPct": 0.2
+  },
+  {
+    "id": "sk_ember_guard",
+    "name": "炎帝·余烬护体",
+    "trigger": "onTurnStart",
+    "chance": 0.35,
+    "effectType": "addShieldBySourceAtkPct",
+    "target": "self",
+    "shieldPct": 0.8
+  },
+  {
+    "id": "sk_tidal_blessing",
+    "name": "沧海·潮生",
+    "mode": "active",
+    "cooldownTurns": 3,
+    "priority": 28,
+    "trigger": "onTurnStart",
+    "chance": 0,
+    "effectType": "healByTargetMaxHpPct",
+    "power": 1.6,
+    "target": "lowestAlly",
+    "hpPct": 0.22
+  },
+  {
+    "id": "sk_frost_barrier",
+    "name": "沧海·霜潮护佑",
+    "trigger": "onRoundStart",
+    "chance": 0.25,
+    "effectType": "addShieldByTargetMaxHpPct",
+    "target": "allAlly",
+    "buffStacks": 1,
+    "shieldPct": 0.12
+  },
+  {
+    "id": "sk_gale_combo",
+    "name": "风神·裂空连刃",
+    "mode": "active",
+    "cooldownTurns": 3,
+    "priority": 24,
+    "trigger": "onTurnStart",
+    "chance": 0,
+    "effectType": "damage",
+    "power": 0.42,
+    "target": "allEnemy"
+  },
+  {
+    "id": "sk_haste_banner",
+    "name": "风神·疾风战旗",
+    "trigger": "onBattleStart",
+    "chance": 1.0,
+    "effectType": "addBuff",
+    "buffId": "buff_haste",
+    "target": "allAlly"
+  },
+  {
+    "id": "sk_solar_judgment",
+    "name": "天照·曜日裁决",
+    "mode": "active",
+    "cooldownTurns": 4,
+    "priority": 50,
+    "trigger": "onTurnStart",
+    "chance": 0,
+    "effectType": "damage",
+    "power": 3.0,
+    "target": "current"
+  },
+  {
+    "id": "sk_holy_aegis",
+    "name": "天照·圣盾庇护",
+    "trigger": "onTurnStart",
+    "chance": 0.5,
+    "effectType": "addShieldByTargetMaxHpPct",
+    "target": "self",
+    "buffStacks": 1,
+    "shieldPct": 0.18
+  },
+  {
+    "id": "sk_nether_burst",
+    "name": "冥王·幽冥震爆",
+    "mode": "active",
+    "cooldownTurns": 3,
+    "priority": 40,
+    "trigger": "onBeforeAttack",
+    "chance": 0,
+    "effectType": "damage",
+    "power": 2.4,
+    "target": "current"
+  },
+  {
+    "id": "sk_curse_mist",
+    "name": "冥王·灾厄雾蚀",
+    "trigger": "onAfterAttack",
+    "chance": 0.2,
+    "effectType": "removeRandomBuff",
+    "buffId": "buff_curse",
+    "target": "allEnemy",
+    "removeCount": 1
   }
 ]

@@ -76,6 +76,18 @@ export default class FighterNode {
             writable: true,
             value: void 0
         });
+        Object.defineProperty(this, "shield", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
+        Object.defineProperty(this, "maxShield", {
+            enumerable: true,
+            configurable: true,
+            writable: true,
+            value: void 0
+        });
         Object.defineProperty(this, "destroyed", {
             enumerable: true,
             configurable: true,
@@ -147,6 +159,8 @@ export default class FighterNode {
         this.name = f.name;
         this.hp = f.hp;
         this.maxHp = f.maxHp;
+        this.shield = Math.max(0, Math.floor(f.shield ?? 0));
+        this.maxShield = Math.max(1, Math.floor(f.maxShield ?? f.maxHp));
         this.side = f.side;
         const c = this.container;
         // ── 层级顺序 ──
@@ -238,22 +252,34 @@ export default class FighterNode {
         blink(3);
     }
     // ── 伤害 / 治疗 / 死亡 ──
-    applyDamage(amount, hp, maxHp, fx, runner, color) {
+    applyDamage(amount, hp, maxHp, shield, maxShield, fx, runner, color, absorbed = 0) {
         this.hp = hp;
         this.maxHp = maxHp;
+        this.shield = Math.max(0, Math.floor(shield));
+        this.maxShield = Math.max(1, Math.floor(maxShield || maxHp));
         this.paintHp();
         const ox = this.container.x;
         runner.add(Tween.to(this.container, { x: ox + 10 }, 3, easeOutCubic, () => {
             runner.add(Tween.to(this.container, { x: ox }, 7, easeOutCubic));
         }));
-        fx.floatingText(`-${amount}`, this.x, this.y - Box.HH - 28, color != null ? { color } : undefined);
+        const dmgText = absorbed > 0 ? `-${amount} (🛡-${absorbed})` : `-${amount}`;
+        fx.floatingText(dmgText, this.x, this.y - Box.HH - 28, color != null ? { color } : undefined);
         fx.hitSpark(this.x, this.y, 5);
     }
-    applyHeal(amount, hp, maxHp, fx) {
+    applyHeal(amount, hp, maxHp, shield, maxShield, fx) {
         this.hp = hp;
         this.maxHp = maxHp;
+        this.shield = Math.max(0, Math.floor(shield));
+        this.maxShield = Math.max(1, Math.floor(maxShield || maxHp));
         this.paintHp();
         fx.floatingText(`+${amount}`, this.x, this.y - Box.HH - 28, { color: 0x54ff8d });
+        fx.healParticles(this.x, this.y);
+    }
+    applyShield(amount, shield, maxShield, fx) {
+        this.shield = Math.max(0, Math.floor(shield));
+        this.maxShield = Math.max(1, Math.floor(maxShield || this.maxHp));
+        this.paintHp();
+        fx.floatingText(`🛡+${amount}`, this.x, this.y - Box.HH - 28, { color: 0x66ccff });
         fx.healParticles(this.x, this.y);
     }
     playDeath(fx, runner) {
@@ -337,18 +363,26 @@ export default class FighterNode {
     paintHp() {
         if (this.destroyed)
             return;
-        const ratio = this.maxHp > 0 ? Math.max(0, Math.min(1, this.hp / this.maxHp)) : 0;
-        this.hpLabel.text = `${Math.max(0, this.hp | 0)}/${Math.max(0, this.maxHp | 0)}`;
+        const hpRatio = this.maxHp > 0 ? Math.max(0, Math.min(1, this.hp / this.maxHp)) : 0;
+        const shieldRatioByHp = this.maxHp > 0 ? Math.max(0, Math.min(1, this.shield / this.maxHp)) : 0;
+        this.hpLabel.text = `${Math.max(0, this.hp | 0)}/${Math.max(0, this.maxHp | 0)}  🛡${Math.max(0, this.shield | 0)}`;
         const g = this.hpBar;
         g.clear();
         g.beginFill(0x000000, 0.45);
         roundedRect(g, 0, 0, Box.HPW, Box.HPH, 6);
         g.endFill();
-        const fw = Math.max(0, (Box.HPW - 4) * ratio);
-        if (fw > 0) {
-            const color = ratio > 0.5 ? 0x54ff8d : ratio > 0.25 ? 0xffcc33 : 0xff4444;
+        const innerW = Box.HPW - 4;
+        const hpW = Math.max(0, innerW * hpRatio);
+        if (hpW > 0) {
+            const color = hpRatio > 0.5 ? 0x54ff8d : hpRatio > 0.25 ? 0xffcc33 : 0xff4444;
             g.beginFill(color, 0.9);
-            roundedRect(g, 2, 2, fw, Box.HPH - 4, 4);
+            roundedRect(g, 2, 2, hpW, Box.HPH - 4, 4);
+            g.endFill();
+        }
+        const shieldW = Math.max(0, Math.min(innerW - hpW, innerW * shieldRatioByHp));
+        if (shieldW > 0) {
+            g.beginFill(0x66ccff, 0.92);
+            roundedRect(g, 2 + hpW, 2, shieldW, Box.HPH - 4, 4);
             g.endFill();
         }
     }

@@ -146,6 +146,17 @@ const SKILL_HIT_FX: Record<string, { preset: EmitterConfig; count: number }> = {
   sk_poison:    { preset: PoisonDripPreset,  count: 8  },
   sk_slow:      { preset: ShieldGlintPreset, count: 6  },
   sk_warcry:    { preset: FireHitPreset,     count: 8  },
+
+  sk_raging_inferno: { preset: FireHitPreset,     count: 16 },
+  sk_ember_guard:    { preset: ShieldGlintPreset, count: 8  },
+  sk_tidal_blessing: { preset: HealRisePreset,    count: 12 },
+  sk_frost_barrier:  { preset: ShieldGlintPreset, count: 12 },
+  sk_gale_combo:     { preset: SweepImpactPreset, count: 12 },
+  sk_haste_banner:   { preset: HealRisePreset,    count: 8  },
+  sk_solar_judgment: { preset: FireHitPreset,     count: 18 },
+  sk_holy_aegis:     { preset: ShieldGlintPreset, count: 12 },
+  sk_nether_burst:   { preset: PoisonDripPreset,  count: 12 },
+  sk_curse_mist:     { preset: PoisonDripPreset,  count: 10 },
 };
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
