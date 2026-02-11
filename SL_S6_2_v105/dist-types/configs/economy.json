@@ -1,0 +1,12 @@
+{
+    "summonTicketKey": "ticket_normal",
+    "summonTicketName": "普通召唤券",
+    "summonCostDiamond": 300,
+    "dupeShardKey": "shard_universal",
+    "chest_cName": "普通宝箱",
+    "chest_bName": "高级宝箱",
+    "chest_aName": "史诗宝箱",
+    "chest_sName": "传说宝箱",
+    "levelUpGoldBase": 120,
+    "levelCap": 100
+}
