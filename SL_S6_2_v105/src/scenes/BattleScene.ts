@@ -30,6 +30,7 @@ interface StageConfig {
 }
 
 const STAGES = stagesJson as unknown as StageConfig[];
+const STAGE_MAP = new Map<number, StageConfig>(STAGES.map((s) => [s.id, s]));
 
 /** 快捷创建 FighterSnapshot */
 function fighter(
@@ -63,13 +64,22 @@ export default class BattleScene extends BaseScene {
   private deadGrace = 0;
 
   private directive: Directive | null = null;
+  private directiveModMap: Partial<Record<DirectiveMod['type'], number>> = {};
   private runId     = 0;
   private locking   = false;
 
   private getModValue(type: DirectiveMod['type']): number | null {
-    if (!this.directive) return null;
-    const m = (this.directive.mods || []).find(x => x.type === type);
-    return m ? Number(m.value) : null;
+    const v = this.directiveModMap[type];
+    return Number.isFinite(v) ? (v as number) : null;
+  }
+
+  private rebuildDirectiveModCache(): void {
+    this.directiveModMap = {};
+    const mods = this.directive?.mods ?? [];
+    for (const m of mods) {
+      const v = Number(m.value);
+      if (Number.isFinite(v)) this.directiveModMap[m.type] = v;
+    }
   }
 
   private applyMult(n: number, mult: number | null): number {
@@ -179,6 +189,7 @@ export default class BattleScene extends BaseScene {
     // Ensure AI Director directive for this stage (per-stage, cached)
     const stageNow = this.game.state.stage;
     this.directive = await this.ensureDirectiveForStage(stageNow);
+    this.rebuildDirectiveModCache();
 
     // Ignore stale async completion when a newer restart already began.
     if (this.runId !== rid) return;
@@ -230,6 +241,7 @@ export default class BattleScene extends BaseScene {
     this.winRunId = 0;
     this.endDelay = 0;
     this.deadGrace = 0;
+    this.directiveModMap = {};
     this.engine.view.stopAllAnimations();
     this.applySpeed(BattleScene.SPEEDS[this.speedIdx] ?? 1);
   }
@@ -272,7 +284,7 @@ export default class BattleScene extends BaseScene {
   private buildPlayerTeam(heroes: any[]): FighterSnapshot[] {
     return heroes.map((o, i) => {
       const def = HERO_MAP[o.heroId];
-      const stats = calculateHeroStats(o.level || 1, def?.rarity ?? RARITY.R, o.stars || 0);
+      const stats = calculateHeroStats(o.level || 1, def?.rarity ?? RARITY.R, o.stars || 0, def?.profession);
       const hpMult = this.getModValue('ally_hp_mult');
       const atkMult = this.getModValue('ally_atk_mult');
       const spdMult = this.getModValue('ally_spd_mult');
@@ -289,7 +301,7 @@ export default class BattleScene extends BaseScene {
     const hpMult = this.getModValue('enemy_hp_mult');
     const atkMult = this.getModValue('enemy_atk_mult');
     const spdMult = this.getModValue('enemy_spd_mult');
-    const conf  = STAGES.find(s => s.id === stage);
+    const conf  = STAGE_MAP.get(stage);
     const avgLv = Math.max(1, Math.round(heroes.reduce((s: number, h: any) => s + (h.level || 1), 0) / heroes.length));
 
     if (conf) {
@@ -354,7 +366,7 @@ export default class BattleScene extends BaseScene {
 
     const isWin = winner === 'A';
     const stage = this.game.state.stage;
-    const conf  = STAGES.find(s => s.id === stage);
+    const conf  = STAGE_MAP.get(stage);
     const isBoss  = conf?.isBoss ?? (stage % 10 === 0);
     const isElite = conf?.isElite ?? false;
 
@@ -405,7 +417,7 @@ export default class BattleScene extends BaseScene {
 
     // ── 下一关信息 ──
     const nextStage = isWin ? stage + 1 : stage;
-    const nc = STAGES.find(s => s.id === nextStage);
+    const nc = STAGE_MAP.get(nextStage);
     const bossTag = (nc?.isBoss ?? (nextStage % 10 === 0)) ? '【Boss】' : (nc?.isElite ? '【精英】' : '');
     const nextInfo = isWin
       ? `下一关：第 ${nextStage} 关${nc?.zone ? ` · ${nc.zone}` : ''}${bossTag}`

@@ -1,5 +1,5 @@
-import type { Element, Rarity } from './config';
-import { ELEMENTS, RARITY } from './config';
+import type { Element, Profession, Rarity } from './config';
+import { ELEMENTS, PROFESSION, RARITY } from './config';
 
 // Configs are JSON so balancing/content updates don't require touching TS logic.
 import heroesJson from '../configs/heroes.json';
@@ -11,6 +11,7 @@ export interface HeroDef {
   rarity: Rarity;
   element: Element;
   skills?: string[];
+  profession: Profession;
 }
 
 // 50 heroes, placeholders (no IP). Loaded from JSON for easy content iteration.
@@ -18,6 +19,9 @@ export const HEROES: HeroDef[] = (heroesJson as unknown as HeroDef[]).map((h) =>
   ...h,
   // Ensure we always use canonical rarity values.
   rarity: (RARITY as any)[(h as any).rarity] ?? (h as any).rarity,
+  profession: (Object.values(PROFESSION) as string[]).includes((h as any).profession)
+    ? (h as any).profession
+    : PROFESSION.WARRIOR,
 })) as HeroDef[];
 
 export const HERO_MAP: Record<string, HeroDef> = Object.fromEntries(HEROES.map((h) => [h.id, h]));

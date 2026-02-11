@@ -1,4 +1,4 @@
-import { ELEMENTS, RARITY } from './config';
+import { ELEMENTS, PROFESSION, RARITY } from './config';
 
 import heroesJson from '../configs/heroes.json';
 import stagesJson from '../configs/stages.json';
@@ -56,6 +56,9 @@ export function validateConfigs(): Report {
 
       const eOk = (ELEMENTS as any[]).includes(h.element);
       if (!eOk) errors.push(`${path}.element 非法：${h.element}（必须是 ${ELEMENTS.join('/')}）`);
+
+      const pOk = Object.values(PROFESSION).includes(h.profession);
+      if (!pOk) errors.push(`${path}.profession 非法：${h.profession}（必须是 ${Object.values(PROFESSION).join('/')}）`);
 
       if (h.skills != null) {
         if (!Array.isArray(h.skills)) {

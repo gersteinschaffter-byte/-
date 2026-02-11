@@ -19,6 +19,17 @@ export const RARITY = {
 
 export type Rarity = (typeof RARITY)[keyof typeof RARITY];
 
+
+export const PROFESSION = {
+  WARRIOR: 'warrior',
+  TANK: 'tank',
+  SUPPORT: 'support',
+  MAGE: 'mage',
+  ASSASSIN: 'assassin',
+} as const;
+
+export type Profession = (typeof PROFESSION)[keyof typeof PROFESSION];
+
 export const ECONOMY = economyJson as Readonly<typeof economyJson>;
 
 /** Battle tuning parameters (logic-only). */
