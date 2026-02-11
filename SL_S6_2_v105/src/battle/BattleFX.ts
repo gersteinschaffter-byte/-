@@ -26,6 +26,61 @@ export const FireHitPreset: EmitterConfig = {
   drawGlow: true,
 };
 
+
+/** 雷电命中 — 蓝紫电弧爆闪 */
+export const ThunderStrikePreset: EmitterConfig = {
+  rate: 0,
+  life: [8, 20],
+  speedX: [-5, 5],
+  speedY: [-5, 4],
+  accelY: 0.1,
+  size: [1.2, 3.8],
+  sizeEnd: [0.2, 0.6],
+  alpha: [0.7, 1.0],
+  alphaEnd: 0,
+  colors: [0x66ccff, 0x88aaff, 0xb399ff, 0xffffff],
+  emitZone: 'point',
+  spread: 20,
+  blendMode: BLEND_MODES.ADD,
+  drawGlow: true,
+};
+
+/** 圣光命中 — 金白碎光 */
+export const HolyBurstPreset: EmitterConfig = {
+  rate: 0,
+  life: [10, 24],
+  speedX: [-4, 4],
+  speedY: [-4, 3],
+  accelY: 0.05,
+  size: [1.5, 4],
+  sizeEnd: [0.2, 0.7],
+  alpha: [0.65, 1.0],
+  alphaEnd: 0,
+  colors: [0xffe07a, 0xfff0b0, 0xffffff, 0xffcc66],
+  emitZone: 'point',
+  spread: 24,
+  blendMode: BLEND_MODES.ADD,
+  drawGlow: true,
+};
+
+/** 冰霜命中 — 冷蓝碎晶 */
+export const FrostShatterPreset: EmitterConfig = {
+  rate: 0,
+  life: [12, 26],
+  speedX: [-3.5, 3.5],
+  speedY: [-3.5, 2.5],
+  accelY: 0.05,
+  size: [1.2, 3.2],
+  sizeEnd: [0.2, 0.6],
+  alpha: [0.55, 0.95],
+  alphaEnd: 0,
+  colors: [0xa9e7ff, 0x88d8ff, 0xdcf6ff, 0x66bbff],
+  emitZone: 'point',
+  spread: 28,
+  blendMode: BLEND_MODES.ADD,
+  drawGlow: true,
+};
+
 /** 治疗 — 绿色上升光点 */
 export const HealRisePreset: EmitterConfig = {
   rate: 0,
@@ -138,25 +193,38 @@ export const HitSparkPreset: EmitterConfig = {
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 const SKILL_HIT_FX: Record<string, { preset: EmitterConfig; count: number }> = {
-  sk_fireball:  { preset: FireHitPreset,     count: 14 },
-  sk_sweep:     { preset: SweepImpactPreset, count: 10 },
-  sk_heal:      { preset: HealRisePreset,    count: 10 },
-  sk_aura_heal: { preset: HealRisePreset,    count: 8  },
-  sk_shield:    { preset: ShieldGlintPreset, count: 10 },
-  sk_poison:    { preset: PoisonDripPreset,  count: 8  },
-  sk_slow:      { preset: ShieldGlintPreset, count: 6  },
-  sk_warcry:    { preset: FireHitPreset,     count: 8  },
+  sk_fireball:  { preset: FireHitPreset,       count: 14 },
+  sk_sweep:     { preset: SweepImpactPreset,   count: 10 },
+  sk_heal:      { preset: HealRisePreset,      count: 10 },
+  sk_aura_heal: { preset: HealRisePreset,      count: 8  },
+  sk_shield:    { preset: ShieldGlintPreset,   count: 10 },
+  sk_poison:    { preset: PoisonDripPreset,    count: 8  },
+  sk_slow:      { preset: FrostShatterPreset,  count: 8  },
+  sk_warcry:    { preset: FireHitPreset,       count: 8  },
 
-  sk_raging_inferno: { preset: FireHitPreset,     count: 16 },
-  sk_ember_guard:    { preset: ShieldGlintPreset, count: 8  },
-  sk_tidal_blessing: { preset: HealRisePreset,    count: 12 },
-  sk_frost_barrier:  { preset: ShieldGlintPreset, count: 12 },
-  sk_gale_combo:     { preset: SweepImpactPreset, count: 12 },
-  sk_haste_banner:   { preset: HealRisePreset,    count: 8  },
-  sk_solar_judgment: { preset: FireHitPreset,     count: 18 },
-  sk_holy_aegis:     { preset: ShieldGlintPreset, count: 12 },
-  sk_nether_burst:   { preset: PoisonDripPreset,  count: 12 },
-  sk_curse_mist:     { preset: PoisonDripPreset,  count: 10 },
+  sk_thunderbolt: { preset: ThunderStrikePreset, count: 16 },
+  sk_blizzard:    { preset: FrostShatterPreset,  count: 14 },
+  sk_berserk:     { preset: FireHitPreset,       count: 8  },
+  sk_weaken:      { preset: PoisonDripPreset,    count: 8  },
+  sk_ironwall:    { preset: ShieldGlintPreset,   count: 10 },
+  sk_haste:       { preset: HealRisePreset,      count: 8  },
+  sk_cleave:      { preset: SweepImpactPreset,   count: 12 },
+  sk_smite:       { preset: HolyBurstPreset,     count: 18 },
+  sk_revitalize:  { preset: HealRisePreset,      count: 10 },
+  sk_curse:       { preset: PoisonDripPreset,    count: 8  },
+  sk_mass_heal:   { preset: HealRisePreset,      count: 14 },
+  sk_empower:     { preset: HolyBurstPreset,     count: 8  },
+
+  sk_raging_inferno: { preset: FireHitPreset,       count: 16 },
+  sk_ember_guard:    { preset: ShieldGlintPreset,   count: 8  },
+  sk_tidal_blessing: { preset: HealRisePreset,      count: 12 },
+  sk_frost_barrier:  { preset: FrostShatterPreset,  count: 12 },
+  sk_gale_combo:     { preset: SweepImpactPreset,   count: 12 },
+  sk_haste_banner:   { preset: HealRisePreset,      count: 8  },
+  sk_solar_judgment: { preset: HolyBurstPreset,     count: 18 },
+  sk_holy_aegis:     { preset: ShieldGlintPreset,   count: 12 },
+  sk_nether_burst:   { preset: ThunderStrikePreset, count: 12 },
+  sk_curse_mist:     { preset: PoisonDripPreset,    count: 10 },
 };
 
 // ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -172,6 +240,8 @@ export class BattleFXManager {
 
   /** 技能颜色缓存：actorId → { color, ttl } */
   private readonly skillColorCache = new Map<string, { color: number; ttl: number }>();
+  /** 最近施法缓存：actorId → { skillId, ttl } */
+  private readonly recentSkillCache = new Map<string, { skillId: string; ttl: number }>();
 
   constructor(fxLayer: Container, runner: TweenRunner, arenaW: number, arenaH: number) {
     this.fxLayer = fxLayer;
@@ -190,12 +260,17 @@ export class BattleFXManager {
       v.ttl -= dt;
       if (v.ttl <= 0) this.skillColorCache.delete(id);
     }
+    for (const [id, v] of this.recentSkillCache.entries()) {
+      v.ttl -= dt;
+      if (v.ttl <= 0) this.recentSkillCache.delete(id);
+    }
   }
 
   /** 清空所有特效 */
   clear(): void {
     this.particles.clearAll();
     this.skillColorCache.clear();
+    this.recentSkillCache.clear();
   }
 
   // ── 攻击线 ──
@@ -216,9 +291,18 @@ export class BattleFXManager {
     this.skillColorCache.set(actorId, { color, ttl: 40 });
   }
 
+  setRecentSkill(actorId: string, skillId: string): void {
+    this.recentSkillCache.set(actorId, { skillId, ttl: 26 });
+  }
+
   getSkillColor(actorId: string): number | null {
     const c = this.skillColorCache.get(actorId);
     return c ? c.color : null;
+  }
+
+  getRecentSkill(actorId: string): string | null {
+    const c = this.recentSkillCache.get(actorId);
+    return c ? c.skillId : null;
   }
 
   // ── 技能命中粒子 ──

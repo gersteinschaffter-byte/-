@@ -23,14 +23,38 @@ const Y_VS    = FIGHT_H * 0.50;   // VS 线（居中分隔）
 
 /** 技能颜色映射 */
 const SKILL_COLOR: Record<string, number> = {
-  sk_fireball: 0xff6633,  sk_sweep: 0xffaa22,  sk_heal: 0x54ff8d,
-  sk_aura_heal: 0x88ffcc, sk_warcry: 0xff4444, sk_shield: 0x66ccff,
-  sk_poison: 0xcc44ff,    sk_slow: 0x44ddff,
-  sk_raging_inferno: 0xff6633, sk_ember_guard: 0xffaa55,
-  sk_tidal_blessing: 0x66ddff, sk_frost_barrier: 0xa9e7ff,
-  sk_gale_combo: 0x88ffcc, sk_haste_banner: 0x44ddff,
-  sk_solar_judgment: 0xffe07a, sk_holy_aegis: 0x99ddff,
-  sk_nether_burst: 0xbb66ff, sk_curse_mist: 0xaa44ff,
+  sk_fireball: 0xff6633,
+  sk_sweep: 0xffaa22,
+  sk_heal: 0x54ff8d,
+  sk_aura_heal: 0x88ffcc,
+  sk_warcry: 0xff4444,
+  sk_shield: 0x66ccff,
+  sk_poison: 0xcc44ff,
+  sk_slow: 0x66bbff,
+
+  sk_thunderbolt: 0x7ab5ff,
+  sk_blizzard: 0xa9e7ff,
+  sk_berserk: 0xff5533,
+  sk_weaken: 0xaa66ff,
+  sk_ironwall: 0x66ccff,
+  sk_haste: 0x7dffe0,
+  sk_cleave: 0xffa53a,
+  sk_smite: 0xffe07a,
+  sk_revitalize: 0x71ffb0,
+  sk_curse: 0xbb66ff,
+  sk_mass_heal: 0x9dffcb,
+  sk_empower: 0xffe6a6,
+
+  sk_raging_inferno: 0xff6633,
+  sk_ember_guard: 0xffaa55,
+  sk_tidal_blessing: 0x66ddff,
+  sk_frost_barrier: 0xa9e7ff,
+  sk_gale_combo: 0x88ffcc,
+  sk_haste_banner: 0x44ddff,
+  sk_solar_judgment: 0xffe07a,
+  sk_holy_aegis: 0x99ddff,
+  sk_nether_burst: 0x8b76ff,
+  sk_curse_mist: 0xaa44ff,
 };
 const DEFAULT_COLOR = 0xffee88;
 
@@ -219,6 +243,7 @@ export default class BattleView {
 
     const color = SKILL_COLOR[p.skillId] ?? DEFAULT_COLOR;
     this.fx.setSkillColor(p.actorId, color);
+    this.fx.setRecentSkill(p.actorId, p.skillId);
     node.flashColor(color, this.runner);
     this.fx.floatingText(`【${p.skillName}】`, node.x, node.y - 80,
       { color, fontSize: 20, rise: 50, life: 55 });
@@ -259,6 +284,10 @@ export default class BattleView {
     if (src) {
       const lineColor = this.fx.getSkillColor(p.sourceId) ?? 0xffffff;
       src.playAttack(tar.x, tar.y, this.fx, lineColor);
+
+      const recentSkill = this.fx.getRecentSkill(p.sourceId);
+      if (recentSkill) this.fx.skillHitParticles(recentSkill, tar.x, tar.y);
+      else this.fx.hitSpark(tar.x, tar.y, 8);
     }
 
     const eb = p.elementBonus;
