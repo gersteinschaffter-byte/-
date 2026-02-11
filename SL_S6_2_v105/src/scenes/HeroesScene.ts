@@ -520,7 +520,7 @@ export default class HeroesScene extends BaseScene {
     const level = Math.max(1, Math.floor(owned.level || 1));
     const stars = owned.stars || 0;
     
-    return calculateHeroStats(level, rarity, stars);
+    return calculateHeroStats(level, rarity, stars, hero.profession);
   }
 
   private formatElementTip(element: string): { strong: string[]; weak: string[] } {
@@ -1260,7 +1260,7 @@ ${statsLine}`, element, skills, counter };
     const rarity = heroDef.rarity ?? RARITY.R;
     const stars = owned.stars || 0;
     
-    return calculateHeroStats(level, rarity, stars);
+    return calculateHeroStats(level, rarity, stars, heroDef.profession);
   }
 
 }

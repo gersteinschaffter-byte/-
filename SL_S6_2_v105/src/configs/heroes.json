@@ -6,7 +6,8 @@
     "element": "火",
     "skills": [
       "sk_fireball"
-    ]
+    ],
+    "profession": "mage"
   },
   {
     "id": "h002",
@@ -15,7 +16,8 @@
     "element": "水",
     "skills": [
       "sk_heal"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h003",
@@ -24,7 +26,8 @@
     "element": "风",
     "skills": [
       "sk_sweep"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h004",
@@ -33,7 +36,8 @@
     "element": "光",
     "skills": [
       "sk_shield"
-    ]
+    ],
+    "profession": "tank"
   },
   {
     "id": "h005",
@@ -42,7 +46,8 @@
     "element": "暗",
     "skills": [
       "sk_poison"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h006",
@@ -51,7 +56,8 @@
     "element": "火",
     "skills": [
       "sk_fireball"
-    ]
+    ],
+    "profession": "mage"
   },
   {
     "id": "h007",
@@ -60,7 +66,8 @@
     "element": "水",
     "skills": [
       "sk_slow"
-    ]
+    ],
+    "profession": "mage"
   },
   {
     "id": "h008",
@@ -69,7 +76,8 @@
     "element": "风",
     "skills": [
       "sk_heal"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h009",
@@ -79,7 +87,8 @@
     "skills": [
       "sk_aura_heal",
       "sk_shield"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h010",
@@ -89,7 +98,8 @@
     "skills": [
       "sk_poison",
       "sk_sweep"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h011",
@@ -99,7 +109,8 @@
     "skills": [
       "sk_fireball",
       "sk_warcry"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h012",
@@ -109,7 +120,8 @@
     "skills": [
       "sk_slow",
       "sk_heal"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h013",
@@ -119,7 +131,8 @@
     "skills": [
       "sk_sweep",
       "sk_poison"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h014",
@@ -129,7 +142,8 @@
     "skills": [
       "sk_aura_heal",
       "sk_shield"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h015",
@@ -139,7 +153,8 @@
     "skills": [
       "sk_poison",
       "sk_sweep"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h016",
@@ -149,7 +164,8 @@
     "skills": [
       "sk_fireball",
       "sk_warcry"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h017",
@@ -159,7 +175,8 @@
     "skills": [
       "sk_slow",
       "sk_heal"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h018",
@@ -169,7 +186,8 @@
     "skills": [
       "sk_sweep",
       "sk_shield"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h019",
@@ -179,7 +197,8 @@
     "skills": [
       "sk_aura_heal",
       "sk_shield"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h020",
@@ -189,7 +208,8 @@
     "skills": [
       "sk_poison",
       "sk_fireball"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h021",
@@ -198,7 +218,8 @@
     "element": "火",
     "skills": [
       "sk_thunderbolt"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h022",
@@ -207,7 +228,8 @@
     "element": "水",
     "skills": [
       "sk_slow"
-    ]
+    ],
+    "profession": "mage"
   },
   {
     "id": "h023",
@@ -216,7 +238,8 @@
     "element": "风",
     "skills": [
       "sk_cleave"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h024",
@@ -225,7 +248,8 @@
     "element": "光",
     "skills": [
       "sk_shield"
-    ]
+    ],
+    "profession": "tank"
   },
   {
     "id": "h025",
@@ -234,7 +258,8 @@
     "element": "暗",
     "skills": [
       "sk_poison"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h026",
@@ -243,7 +268,8 @@
     "element": "火",
     "skills": [
       "sk_weaken"
-    ]
+    ],
+    "profession": "mage"
   },
   {
     "id": "h027",
@@ -252,7 +278,8 @@
     "element": "水",
     "skills": [
       "sk_heal"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h028",
@@ -261,7 +288,8 @@
     "element": "风",
     "skills": [
       "sk_haste"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h029",
@@ -270,7 +298,8 @@
     "element": "光",
     "skills": [
       "sk_ironwall"
-    ]
+    ],
+    "profession": "tank"
   },
   {
     "id": "h030",
@@ -279,7 +308,8 @@
     "element": "暗",
     "skills": [
       "sk_curse"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h031",
@@ -289,7 +319,8 @@
     "skills": [
       "sk_fireball",
       "sk_berserk"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h032",
@@ -299,7 +330,8 @@
     "skills": [
       "sk_blizzard",
       "sk_heal"
-    ]
+    ],
+    "profession": "mage"
   },
   {
     "id": "h033",
@@ -309,7 +341,8 @@
     "skills": [
       "sk_cleave",
       "sk_haste"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h034",
@@ -319,7 +352,8 @@
     "skills": [
       "sk_smite",
       "sk_shield"
-    ]
+    ],
+    "profession": "tank"
   },
   {
     "id": "h035",
@@ -329,7 +363,8 @@
     "skills": [
       "sk_curse",
       "sk_poison"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h036",
@@ -339,7 +374,8 @@
     "skills": [
       "sk_thunderbolt",
       "sk_warcry"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h037",
@@ -349,7 +385,8 @@
     "skills": [
       "sk_slow",
       "sk_ironwall"
-    ]
+    ],
+    "profession": "tank"
   },
   {
     "id": "h038",
@@ -359,7 +396,8 @@
     "skills": [
       "sk_sweep",
       "sk_weaken"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h039",
@@ -369,7 +407,8 @@
     "skills": [
       "sk_raging_inferno",
       "sk_ember_guard"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h040",
@@ -379,7 +418,8 @@
     "skills": [
       "sk_tidal_blessing",
       "sk_frost_barrier"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h041",
@@ -389,7 +429,8 @@
     "skills": [
       "sk_gale_combo",
       "sk_haste_banner"
-    ]
+    ],
+    "profession": "mage"
   },
   {
     "id": "h042",
@@ -399,7 +440,8 @@
     "skills": [
       "sk_solar_judgment",
       "sk_holy_aegis"
-    ]
+    ],
+    "profession": "mage"
   },
   {
     "id": "h043",
@@ -409,7 +451,8 @@
     "skills": [
       "sk_nether_burst",
       "sk_curse_mist"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h044",
@@ -419,7 +462,8 @@
     "skills": [
       "sk_sweep",
       "sk_warcry"
-    ]
+    ],
+    "profession": "warrior"
   },
   {
     "id": "h045",
@@ -429,7 +473,8 @@
     "skills": [
       "sk_slow",
       "sk_ironwall"
-    ]
+    ],
+    "profession": "tank"
   },
   {
     "id": "h046",
@@ -439,7 +484,8 @@
     "skills": [
       "sk_blizzard",
       "sk_shield"
-    ]
+    ],
+    "profession": "tank"
   },
   {
     "id": "h047",
@@ -449,7 +495,8 @@
     "skills": [
       "sk_smite",
       "sk_empower"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h048",
@@ -459,7 +506,8 @@
     "skills": [
       "sk_thunderbolt",
       "sk_berserk"
-    ]
+    ],
+    "profession": "assassin"
   },
   {
     "id": "h049",
@@ -469,7 +517,8 @@
     "skills": [
       "sk_fireball",
       "sk_revitalize"
-    ]
+    ],
+    "profession": "support"
   },
   {
     "id": "h050",
@@ -479,6 +528,7 @@
     "skills": [
       "sk_blizzard",
       "sk_mass_heal"
-    ]
+    ],
+    "profession": "support"
   }
 ]
