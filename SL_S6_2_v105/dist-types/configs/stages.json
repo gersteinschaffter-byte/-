@@ -1,0 +1,4074 @@
+[
+    {
+        "id": 1,
+        "name": "幽暗森林 1",
+        "zone": "幽暗森林",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 0,
+        "enemies": [
+            {
+                "name": "水精",
+                "element": "水",
+                "rarity": "R",
+                "skills": [
+                    "sk_slow"
+                ]
+            },
+            {
+                "name": "风妖",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "幽暗森林 2",
+        "zone": "幽暗森林",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 0,
+        "enemies": [
+            {
+                "name": "风妖",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep"
+                ]
+            },
+            {
+                "name": "光卫",
+                "element": "光",
+                "rarity": "R",
+                "skills": [
+                    "sk_shield"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 3,
+        "name": "幽暗森林 3",
+        "zone": "幽暗森林",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 0,
+        "enemies": [
+            {
+                "name": "光卫",
+                "element": "光",
+                "rarity": "R",
+                "skills": [
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "暗影",
+                "element": "暗",
+                "rarity": "R",
+                "skills": [
+                    "sk_poison"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "name": "幽暗森林 4",
+        "zone": "幽暗森林",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 0,
+        "enemies": [
+            {
+                "name": "暗影",
+                "element": "暗",
+                "rarity": "R",
+                "skills": [
+                    "sk_poison"
+                ]
+            },
+            {
+                "name": "野狼",
+                "element": "风",
+                "rarity": "R",
+                "skills": []
+            }
+        ]
+    },
+    {
+        "id": 5,
+        "name": "幽暗森林 5",
+        "zone": "幽暗森林",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 0,
+        "enemies": [
+            {
+                "name": "精英·史莱姆",
+                "element": "水",
+                "rarity": "R",
+                "skills": [],
+                "bossMult": 1.11
+            },
+            {
+                "name": "哥布林",
+                "element": "火",
+                "rarity": "R",
+                "skills": []
+            },
+            {
+                "name": "史莱姆",
+                "element": "水",
+                "rarity": "R",
+                "skills": []
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "幽暗森林 6",
+        "zone": "幽暗森林",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 1,
+        "enemies": [
+            {
+                "name": "哥布林",
+                "element": "火",
+                "rarity": "R",
+                "skills": []
+            },
+            {
+                "name": "史莱姆",
+                "element": "水",
+                "rarity": "R",
+                "skills": []
+            }
+        ]
+    },
+    {
+        "id": 7,
+        "name": "幽暗森林 7",
+        "zone": "幽暗森林",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 1,
+        "enemies": [
+            {
+                "name": "史莱姆",
+                "element": "水",
+                "rarity": "R",
+                "skills": []
+            },
+            {
+                "name": "火灵",
+                "element": "火",
+                "rarity": "R",
+                "skills": [
+                    "sk_fireball"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 8,
+        "name": "幽暗森林 8",
+        "zone": "幽暗森林",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 1,
+        "enemies": [
+            {
+                "name": "火灵",
+                "element": "火",
+                "rarity": "R",
+                "skills": [
+                    "sk_fireball"
+                ]
+            },
+            {
+                "name": "水精",
+                "element": "水",
+                "rarity": "R",
+                "skills": [
+                    "sk_slow"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 9,
+        "name": "幽暗森林 9",
+        "zone": "幽暗森林",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 1,
+        "enemies": [
+            {
+                "name": "水精",
+                "element": "水",
+                "rarity": "R",
+                "skills": [
+                    "sk_slow"
+                ]
+            },
+            {
+                "name": "风妖",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 10,
+        "name": "幽暗森林 10",
+        "zone": "幽暗森林",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 1,
+        "enemies": [
+            {
+                "name": "炎兽王",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_warcry"
+                ],
+                "bossMult": 1.25
+            },
+            {
+                "name": "风妖",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep"
+                ]
+            },
+            {
+                "name": "光卫",
+                "element": "光",
+                "rarity": "R",
+                "skills": [
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "暗影",
+                "element": "暗",
+                "rarity": "R",
+                "skills": [
+                    "sk_poison"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 11,
+        "name": "冰封荒原 11",
+        "zone": "冰封荒原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 2,
+        "enemies": [
+            {
+                "name": "圣堂守卫",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_shield",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "暗夜猎手",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_poison",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "name": "冰封荒原 12",
+        "zone": "冰封荒原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 2,
+        "enemies": [
+            {
+                "name": "暗夜猎手",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_poison",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ]
+            },
+            {
+                "name": "冰霜法师",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "name": "冰封荒原 13",
+        "zone": "冰封荒原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 2,
+        "enemies": [
+            {
+                "name": "火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ]
+            },
+            {
+                "name": "冰霜法师",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard"
+                ]
+            },
+            {
+                "name": "风暴游侠",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "name": "冰封荒原 14",
+        "zone": "冰封荒原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 2,
+        "enemies": [
+            {
+                "name": "冰霜法师",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard"
+                ]
+            },
+            {
+                "name": "风暴游侠",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave"
+                ]
+            },
+            {
+                "name": "炎魔兵",
+                "element": "火",
+                "rarity": "R",
+                "skills": [
+                    "sk_fireball",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "name": "冰封荒原 15",
+        "zone": "冰封荒原",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 2,
+        "enemies": [
+            {
+                "name": "精英·火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ],
+                "bossMult": 1.12
+            },
+            {
+                "name": "炎魔兵",
+                "element": "火",
+                "rarity": "R",
+                "skills": [
+                    "sk_fireball",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒冰射手",
+                "element": "水",
+                "rarity": "R",
+                "skills": [
+                    "sk_slow",
+                    "sk_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "name": "冰封荒原 16",
+        "zone": "冰封荒原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 3,
+        "enemies": [
+            {
+                "name": "炎魔兵",
+                "element": "火",
+                "rarity": "R",
+                "skills": [
+                    "sk_fireball",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒冰射手",
+                "element": "水",
+                "rarity": "R",
+                "skills": [
+                    "sk_slow",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "疾风刺客",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "name": "冰封荒原 17",
+        "zone": "冰封荒原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 3,
+        "enemies": [
+            {
+                "name": "寒冰射手",
+                "element": "水",
+                "rarity": "R",
+                "skills": [
+                    "sk_slow",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "疾风刺客",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "圣堂守卫",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_shield",
+                    "sk_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "name": "冰封荒原 18",
+        "zone": "冰封荒原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 3,
+        "enemies": [
+            {
+                "name": "疾风刺客",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "圣堂守卫",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_shield",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "暗夜猎手",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_poison",
+                    "sk_curse"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "name": "冰封荒原 19",
+        "zone": "冰封荒原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 3,
+        "enemies": [
+            {
+                "name": "圣堂守卫",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_shield",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "暗夜猎手",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_poison",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "name": "冰封荒原 20",
+        "zone": "冰封荒原",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 3,
+        "enemies": [
+            {
+                "name": "深渊蛟龙",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_slow"
+                ],
+                "bossMult": 1.3
+            },
+            {
+                "name": "暗夜猎手",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_poison",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ]
+            },
+            {
+                "name": "冰霜法师",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "name": "熔岩裂谷 21",
+        "zone": "熔岩裂谷",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 4,
+        "enemies": [
+            {
+                "name": "火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ]
+            },
+            {
+                "name": "冰霜法师",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard"
+                ]
+            },
+            {
+                "name": "风暴游侠",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "name": "熔岩裂谷 22",
+        "zone": "熔岩裂谷",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 4,
+        "enemies": [
+            {
+                "name": "冰霜法师",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard"
+                ]
+            },
+            {
+                "name": "风暴游侠",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave"
+                ]
+            },
+            {
+                "name": "炎魔兵",
+                "element": "火",
+                "rarity": "R",
+                "skills": [
+                    "sk_fireball",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "name": "熔岩裂谷 23",
+        "zone": "熔岩裂谷",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 4,
+        "enemies": [
+            {
+                "name": "风暴游侠",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave"
+                ]
+            },
+            {
+                "name": "炎魔兵",
+                "element": "火",
+                "rarity": "R",
+                "skills": [
+                    "sk_fireball",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒冰射手",
+                "element": "水",
+                "rarity": "R",
+                "skills": [
+                    "sk_slow",
+                    "sk_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "name": "熔岩裂谷 24",
+        "zone": "熔岩裂谷",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 4,
+        "enemies": [
+            {
+                "name": "炎魔兵",
+                "element": "火",
+                "rarity": "R",
+                "skills": [
+                    "sk_fireball",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒冰射手",
+                "element": "水",
+                "rarity": "R",
+                "skills": [
+                    "sk_slow",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "疾风刺客",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 25,
+        "name": "熔岩裂谷 25",
+        "zone": "熔岩裂谷",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 4,
+        "enemies": [
+            {
+                "name": "精英·圣堂守卫",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_shield",
+                    "sk_heal"
+                ],
+                "bossMult": 1.14
+            },
+            {
+                "name": "疾风刺客",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "圣堂守卫",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_shield",
+                    "sk_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 26,
+        "name": "熔岩裂谷 26",
+        "zone": "熔岩裂谷",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 5,
+        "enemies": [
+            {
+                "name": "疾风刺客",
+                "element": "风",
+                "rarity": "R",
+                "skills": [
+                    "sk_sweep",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "圣堂守卫",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_shield",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "暗夜猎手",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_poison",
+                    "sk_curse"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "name": "熔岩裂谷 27",
+        "zone": "熔岩裂谷",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 5,
+        "enemies": [
+            {
+                "name": "圣堂守卫",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_shield",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "暗夜猎手",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_poison",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "name": "熔岩裂谷 28",
+        "zone": "熔岩裂谷",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 5,
+        "enemies": [
+            {
+                "name": "暗夜猎手",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_poison",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ]
+            },
+            {
+                "name": "冰霜法师",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 29,
+        "name": "熔岩裂谷 29",
+        "zone": "熔岩裂谷",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 5,
+        "enemies": [
+            {
+                "name": "火焰战士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt"
+                ]
+            },
+            {
+                "name": "冰霜法师",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard"
+                ]
+            },
+            {
+                "name": "风暴游侠",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "name": "熔岩裂谷 30",
+        "zone": "熔岩裂谷",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 5,
+        "enemies": [
+            {
+                "name": "风暴巨人",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ],
+                "bossMult": 1.35
+            },
+            {
+                "name": "冰霜法师",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard"
+                ]
+            },
+            {
+                "name": "风暴游侠",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave"
+                ]
+            },
+            {
+                "name": "炎魔兵",
+                "element": "火",
+                "rarity": "R",
+                "skills": [
+                    "sk_fireball",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 31,
+        "name": "风暴高原 31",
+        "zone": "风暴高原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 6,
+        "enemies": [
+            {
+                "name": "飓风斗士",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_weaken"
+                ]
+            },
+            {
+                "name": "炎魔将",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "name": "风暴高原 32",
+        "zone": "风暴高原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 6,
+        "enemies": [
+            {
+                "name": "炎魔将",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "狂风领主",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 33,
+        "name": "风暴高原 33",
+        "zone": "风暴高原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 6,
+        "enemies": [
+            {
+                "name": "深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "狂风领主",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "神殿骑士",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_smite",
+                    "sk_shield"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 34,
+        "name": "风暴高原 34",
+        "zone": "风暴高原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 6,
+        "enemies": [
+            {
+                "name": "狂风领主",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "神殿骑士",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_smite",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "冥府使者",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_curse",
+                    "sk_poison"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 35,
+        "name": "风暴高原 35",
+        "zone": "风暴高原",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 6,
+        "enemies": [
+            {
+                "name": "精英·深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ],
+                "bossMult": 1.15
+            },
+            {
+                "name": "冥府使者",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_curse",
+                    "sk_poison"
+                ]
+            },
+            {
+                "name": "赤炎术士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "极寒守卫",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 36,
+        "name": "风暴高原 36",
+        "zone": "风暴高原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 7,
+        "enemies": [
+            {
+                "name": "冥府使者",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_curse",
+                    "sk_poison"
+                ]
+            },
+            {
+                "name": "赤炎术士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "极寒守卫",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 37,
+        "name": "风暴高原 37",
+        "zone": "风暴高原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 7,
+        "enemies": [
+            {
+                "name": "赤炎术士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "极寒守卫",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "飓风斗士",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_weaken"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 38,
+        "name": "风暴高原 38",
+        "zone": "风暴高原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 7,
+        "enemies": [
+            {
+                "name": "极寒守卫",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "飓风斗士",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_weaken"
+                ]
+            },
+            {
+                "name": "炎魔将",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 39,
+        "name": "风暴高原 39",
+        "zone": "风暴高原",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 7,
+        "enemies": [
+            {
+                "name": "飓风斗士",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_weaken"
+                ]
+            },
+            {
+                "name": "炎魔将",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 40,
+        "name": "风暴高原 40",
+        "zone": "风暴高原",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 7,
+        "enemies": [
+            {
+                "name": "光明圣殿主",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ],
+                "bossMult": 1.4
+            },
+            {
+                "name": "炎魔将",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "狂风领主",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 41,
+        "name": "神殿废墟 41",
+        "zone": "神殿废墟",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 8,
+        "enemies": [
+            {
+                "name": "深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "狂风领主",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "神殿骑士",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_smite",
+                    "sk_shield"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 42,
+        "name": "神殿废墟 42",
+        "zone": "神殿废墟",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 8,
+        "enemies": [
+            {
+                "name": "狂风领主",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "神殿骑士",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_smite",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "冥府使者",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_curse",
+                    "sk_poison"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 43,
+        "name": "神殿废墟 43",
+        "zone": "神殿废墟",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 8,
+        "enemies": [
+            {
+                "name": "神殿骑士",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_smite",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "冥府使者",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_curse",
+                    "sk_poison"
+                ]
+            },
+            {
+                "name": "赤炎术士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 44,
+        "name": "神殿废墟 44",
+        "zone": "神殿废墟",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 8,
+        "enemies": [
+            {
+                "name": "冥府使者",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_curse",
+                    "sk_poison"
+                ]
+            },
+            {
+                "name": "赤炎术士",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "极寒守卫",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 45,
+        "name": "神殿废墟 45",
+        "zone": "神殿废墟",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 8,
+        "enemies": [
+            {
+                "name": "精英·飓风斗士",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_weaken"
+                ],
+                "bossMult": 1.17
+            },
+            {
+                "name": "极寒守卫",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "飓风斗士",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_weaken"
+                ]
+            },
+            {
+                "name": "炎魔将",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 46,
+        "name": "神殿废墟 46",
+        "zone": "神殿废墟",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 9,
+        "enemies": [
+            {
+                "name": "极寒守卫",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "飓风斗士",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_weaken"
+                ]
+            },
+            {
+                "name": "炎魔将",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 47,
+        "name": "神殿废墟 47",
+        "zone": "神殿废墟",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 9,
+        "enemies": [
+            {
+                "name": "飓风斗士",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_weaken"
+                ]
+            },
+            {
+                "name": "炎魔将",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 48,
+        "name": "神殿废墟 48",
+        "zone": "神殿废墟",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 9,
+        "enemies": [
+            {
+                "name": "炎魔将",
+                "element": "火",
+                "rarity": "SR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "狂风领主",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 49,
+        "name": "神殿废墟 49",
+        "zone": "神殿废墟",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 9,
+        "enemies": [
+            {
+                "name": "深海祭司",
+                "element": "水",
+                "rarity": "SR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_heal"
+                ]
+            },
+            {
+                "name": "狂风领主",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "神殿骑士",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_smite",
+                    "sk_shield"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 50,
+        "name": "神殿废墟 50",
+        "zone": "神殿废墟",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 9,
+        "enemies": [
+            {
+                "name": "暗影魔王",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ],
+                "bossMult": 1.45
+            },
+            {
+                "name": "狂风领主",
+                "element": "风",
+                "rarity": "SR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "神殿骑士",
+                "element": "光",
+                "rarity": "SR",
+                "skills": [
+                    "sk_smite",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "冥府使者",
+                "element": "暗",
+                "rarity": "SR",
+                "skills": [
+                    "sk_curse",
+                    "sk_poison"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 51,
+        "name": "深渊裂隙 51",
+        "zone": "深渊裂隙",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 10,
+        "enemies": [
+            {
+                "name": "圣光天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ]
+            },
+            {
+                "name": "冥界判官",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 52,
+        "name": "深渊裂隙 52",
+        "zone": "深渊裂隙",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 10,
+        "enemies": [
+            {
+                "name": "冥界判官",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 53,
+        "name": "深渊裂隙 53",
+        "zone": "深渊裂隙",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 10,
+        "enemies": [
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "苍穹之鹰",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_shield"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 54,
+        "name": "深渊裂隙 54",
+        "zone": "深渊裂隙",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 10,
+        "enemies": [
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "苍穹之鹰",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "炎魔君主",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 55,
+        "name": "深渊裂隙 55",
+        "zone": "深渊裂隙",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 10,
+        "enemies": [
+            {
+                "name": "精英·浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ],
+                "bossMult": 1.18
+            },
+            {
+                "name": "炎魔君主",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "海神使徒",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "风暴之王",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 56,
+        "name": "深渊裂隙 56",
+        "zone": "深渊裂隙",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 11,
+        "enemies": [
+            {
+                "name": "炎魔君主",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "海神使徒",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "风暴之王",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 57,
+        "name": "深渊裂隙 57",
+        "zone": "深渊裂隙",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 11,
+        "enemies": [
+            {
+                "name": "海神使徒",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "风暴之王",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "圣光天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 58,
+        "name": "深渊裂隙 58",
+        "zone": "深渊裂隙",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 11,
+        "enemies": [
+            {
+                "name": "风暴之王",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "圣光天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ]
+            },
+            {
+                "name": "冥界判官",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 59,
+        "name": "深渊裂隙 59",
+        "zone": "深渊裂隙",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 11,
+        "enemies": [
+            {
+                "name": "圣光天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ]
+            },
+            {
+                "name": "冥界判官",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 60,
+        "name": "深渊裂隙 60",
+        "zone": "深渊裂隙",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 11,
+        "enemies": [
+            {
+                "name": "炎皇·烈焰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ],
+                "bossMult": 1.5
+            },
+            {
+                "name": "冥界判官",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "苍穹之鹰",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_shield"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 61,
+        "name": "天空之城 61",
+        "zone": "天空之城",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 12,
+        "enemies": [
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "苍穹之鹰",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "炎魔君主",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 62,
+        "name": "天空之城 62",
+        "zone": "天空之城",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 12,
+        "enemies": [
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "苍穹之鹰",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "炎魔君主",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "海神使徒",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 63,
+        "name": "天空之城 63",
+        "zone": "天空之城",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 12,
+        "enemies": [
+            {
+                "name": "苍穹之鹰",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "炎魔君主",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "海神使徒",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "风暴之王",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 64,
+        "name": "天空之城 64",
+        "zone": "天空之城",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 12,
+        "enemies": [
+            {
+                "name": "炎魔君主",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "海神使徒",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "风暴之王",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "圣光天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 65,
+        "name": "天空之城 65",
+        "zone": "天空之城",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 12,
+        "enemies": [
+            {
+                "name": "精英·圣光天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ],
+                "bossMult": 1.2
+            },
+            {
+                "name": "风暴之王",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "圣光天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ]
+            },
+            {
+                "name": "冥界判官",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 66,
+        "name": "天空之城 66",
+        "zone": "天空之城",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 13,
+        "enemies": [
+            {
+                "name": "风暴之王",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "圣光天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ]
+            },
+            {
+                "name": "冥界判官",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 67,
+        "name": "天空之城 67",
+        "zone": "天空之城",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 13,
+        "enemies": [
+            {
+                "name": "圣光天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_aura_heal"
+                ]
+            },
+            {
+                "name": "冥界判官",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 68,
+        "name": "天空之城 68",
+        "zone": "天空之城",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 13,
+        "enemies": [
+            {
+                "name": "冥界判官",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "苍穹之鹰",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_shield"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 69,
+        "name": "天空之城 69",
+        "zone": "天空之城",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 13,
+        "enemies": [
+            {
+                "name": "浴火凤凰",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "苍穹之鹰",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "炎魔君主",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 70,
+        "name": "天空之城 70",
+        "zone": "天空之城",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 13,
+        "enemies": [
+            {
+                "name": "冰帝·霜寒",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ],
+                "bossMult": 1.55
+            },
+            {
+                "name": "冰封巨龙",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "苍穹之鹰",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_shield"
+                ]
+            },
+            {
+                "name": "炎魔君主",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "海神使徒",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 71,
+        "name": "魔焰地狱 71",
+        "zone": "魔焰地狱",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 14,
+        "enemies": [
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 72,
+        "name": "魔焰地狱 72",
+        "zone": "魔焰地狱",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 14,
+        "enemies": [
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 73,
+        "name": "魔焰地狱 73",
+        "zone": "魔焰地狱",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 14,
+        "enemies": [
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 74,
+        "name": "魔焰地狱 74",
+        "zone": "魔焰地狱",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 14,
+        "enemies": [
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 75,
+        "name": "魔焰地狱 75",
+        "zone": "魔焰地狱",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 14,
+        "enemies": [
+            {
+                "name": "精英·深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ],
+                "bossMult": 1.21
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 76,
+        "name": "魔焰地狱 76",
+        "zone": "魔焰地狱",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 15,
+        "enemies": [
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 77,
+        "name": "魔焰地狱 77",
+        "zone": "魔焰地狱",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 15,
+        "enemies": [
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 78,
+        "name": "魔焰地狱 78",
+        "zone": "魔焰地狱",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 15,
+        "enemies": [
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 79,
+        "name": "魔焰地狱 79",
+        "zone": "魔焰地狱",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 15,
+        "enemies": [
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 80,
+        "name": "魔焰地狱 80",
+        "zone": "魔焰地狱",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 15,
+        "enemies": [
+            {
+                "name": "风神·苍穹",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_haste"
+                ],
+                "bossMult": 1.6
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 81,
+        "name": "诸神黄昏 81",
+        "zone": "诸神黄昏",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 16,
+        "enemies": [
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 82,
+        "name": "诸神黄昏 82",
+        "zone": "诸神黄昏",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 16,
+        "enemies": [
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 83,
+        "name": "诸神黄昏 83",
+        "zone": "诸神黄昏",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 16,
+        "enemies": [
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 84,
+        "name": "诸神黄昏 84",
+        "zone": "诸神黄昏",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 16,
+        "enemies": [
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 85,
+        "name": "诸神黄昏 85",
+        "zone": "诸神黄昏",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 16,
+        "enemies": [
+            {
+                "name": "精英·雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ],
+                "bossMult": 1.23
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 86,
+        "name": "诸神黄昏 86",
+        "zone": "诸神黄昏",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 17,
+        "enemies": [
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 87,
+        "name": "诸神黄昏 87",
+        "zone": "诸神黄昏",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 17,
+        "enemies": [
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 88,
+        "name": "诸神黄昏 88",
+        "zone": "诸神黄昏",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 17,
+        "enemies": [
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 89,
+        "name": "诸神黄昏 89",
+        "zone": "诸神黄昏",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 17,
+        "enemies": [
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 90,
+        "name": "诸神黄昏 90",
+        "zone": "诸神黄昏",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 17,
+        "enemies": [
+            {
+                "name": "天尊·圣裁",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ],
+                "bossMult": 1.65
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 91,
+        "name": "混沌虚空 91",
+        "zone": "混沌虚空",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 18,
+        "enemies": [
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 92,
+        "name": "混沌虚空 92",
+        "zone": "混沌虚空",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 18,
+        "enemies": [
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 93,
+        "name": "混沌虚空 93",
+        "zone": "混沌虚空",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 18,
+        "enemies": [
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 94,
+        "name": "混沌虚空 94",
+        "zone": "混沌虚空",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 18,
+        "enemies": [
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 95,
+        "name": "混沌虚空 95",
+        "zone": "混沌虚空",
+        "isBoss": false,
+        "isElite": true,
+        "levelOffset": 18,
+        "enemies": [
+            {
+                "name": "精英·灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ],
+                "bossMult": 1.24
+            },
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 96,
+        "name": "混沌虚空 96",
+        "zone": "混沌虚空",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 19,
+        "enemies": [
+            {
+                "name": "焚天魔神",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_fireball",
+                    "sk_berserk"
+                ]
+            },
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 97,
+        "name": "混沌虚空 97",
+        "zone": "混沌虚空",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 19,
+        "enemies": [
+            {
+                "name": "深渊海皇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_blizzard",
+                    "sk_mass_heal"
+                ]
+            },
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 98,
+        "name": "混沌虚空 98",
+        "zone": "混沌虚空",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 19,
+        "enemies": [
+            {
+                "name": "毁灭风暴",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_cleave",
+                    "sk_haste"
+                ]
+            },
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 99,
+        "name": "混沌虚空 99",
+        "zone": "混沌虚空",
+        "isBoss": false,
+        "isElite": false,
+        "levelOffset": 19,
+        "enemies": [
+            {
+                "name": "审判天使",
+                "element": "光",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_smite",
+                    "sk_empower"
+                ]
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 100,
+        "name": "混沌虚空 100",
+        "zone": "混沌虚空",
+        "isBoss": true,
+        "isElite": false,
+        "levelOffset": 19,
+        "enemies": [
+            {
+                "name": "冥神·永夜",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_berserk"
+                ],
+                "bossMult": 1.7
+            },
+            {
+                "name": "永夜领主",
+                "element": "暗",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_curse"
+                ]
+            },
+            {
+                "name": "灭世炎龙",
+                "element": "火",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_thunderbolt",
+                    "sk_warcry"
+                ]
+            },
+            {
+                "name": "寒渊巨蛇",
+                "element": "水",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_slow",
+                    "sk_ironwall"
+                ]
+            },
+            {
+                "name": "雷霆战神",
+                "element": "风",
+                "rarity": "SSR",
+                "skills": [
+                    "sk_sweep",
+                    "sk_berserk"
+                ]
+            }
+        ]
+    }
+]
