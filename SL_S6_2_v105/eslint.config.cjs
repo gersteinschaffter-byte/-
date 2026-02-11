@@ -1,4 +1,3 @@
-const js = require('@eslint/js');
 const tsParser = require('@typescript-eslint/parser');
 const tsPlugin = require('@typescript-eslint/eslint-plugin');
 const prettierPlugin = require('eslint-plugin-prettier');
@@ -7,7 +6,6 @@ module.exports = [
   {
     ignores: ['dist/**', 'node_modules/**', '.vite/**', 'coverage/**'],
   },
-  js.configs.recommended,
   {
     files: ['src/**/*.{ts,tsx}'],
     languageOptions: {
@@ -22,6 +20,7 @@ module.exports = [
         console: 'readonly',
         localStorage: 'readonly',
         sessionStorage: 'readonly',
+        navigator: 'readonly',
         fetch: 'readonly',
         setTimeout: 'readonly',
         clearTimeout: 'readonly',

@@ -2,7 +2,7 @@
 // These are used for display and for basic cache/version diagnostics.
 // Keep it simple: no build-time injection required.
 
-export const GAME_VERSION = '0.0.108';
+export const GAME_VERSION = '0.0.111';
 
 // Data schema/content version (used to detect when cached JSON/state should be invalidated).
 // For now we keep it in lockstep with GAME_VERSION.
