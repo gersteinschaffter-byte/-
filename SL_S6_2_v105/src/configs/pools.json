@@ -1,0 +1,10 @@
+{
+  "normal": {
+    "id": "normal",
+    "title": "普通召唤池",
+    "descLeft": "优先消耗：普通召唤券 x1（当前 {ticketCount}）",
+    "descRight": "无券则消耗：钻石 {diamondCost}",
+    "ticketKey": "ticket_normal",
+    "diamondCost": 300
+  }
+}
